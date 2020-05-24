@@ -1,0 +1,7 @@
+C:\Users\danielbr\Desktop\daniel_Treinamentos\CSharp\Modulo_II\ByteBank\ByteBank05\bin\Debug\ByteBank05.exe.config
+C:\Users\danielbr\Desktop\daniel_Treinamentos\CSharp\Modulo_II\ByteBank\ByteBank05\bin\Debug\ByteBank05.exe
+C:\Users\danielbr\Desktop\daniel_Treinamentos\CSharp\Modulo_II\ByteBank\ByteBank05\bin\Debug\ByteBank05.pdb
+C:\Users\danielbr\Desktop\daniel_Treinamentos\CSharp\Modulo_II\ByteBank\ByteBank05\obj\Debug\ByteBank05.csprojAssemblyReference.cache
+C:\Users\danielbr\Desktop\daniel_Treinamentos\CSharp\Modulo_II\ByteBank\ByteBank05\obj\Debug\ByteBank05.csproj.CoreCompileInputs.cache
+C:\Users\danielbr\Desktop\daniel_Treinamentos\CSharp\Modulo_II\ByteBank\ByteBank05\obj\Debug\ByteBank05.exe
+C:\Users\danielbr\Desktop\daniel_Treinamentos\CSharp\Modulo_II\ByteBank\ByteBank05\obj\Debug\ByteBank05.pdb

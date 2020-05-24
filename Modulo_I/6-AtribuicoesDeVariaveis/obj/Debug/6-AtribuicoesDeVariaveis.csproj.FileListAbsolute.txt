@@ -1,0 +1,7 @@
+C:\Users\danielbr\Desktop\daniel_Treinamentos\CSharp\6-AtribuicoesDeVariaveis\bin\Debug\6-AtribuicoesDeVariaveis.exe.config
+C:\Users\danielbr\Desktop\daniel_Treinamentos\CSharp\6-AtribuicoesDeVariaveis\bin\Debug\6-AtribuicoesDeVariaveis.exe
+C:\Users\danielbr\Desktop\daniel_Treinamentos\CSharp\6-AtribuicoesDeVariaveis\bin\Debug\6-AtribuicoesDeVariaveis.pdb
+C:\Users\danielbr\Desktop\daniel_Treinamentos\CSharp\6-AtribuicoesDeVariaveis\obj\Debug\6-AtribuicoesDeVariaveis.csprojAssemblyReference.cache
+C:\Users\danielbr\Desktop\daniel_Treinamentos\CSharp\6-AtribuicoesDeVariaveis\obj\Debug\6-AtribuicoesDeVariaveis.csproj.CoreCompileInputs.cache
+C:\Users\danielbr\Desktop\daniel_Treinamentos\CSharp\6-AtribuicoesDeVariaveis\obj\Debug\6-AtribuicoesDeVariaveis.exe
+C:\Users\danielbr\Desktop\daniel_Treinamentos\CSharp\6-AtribuicoesDeVariaveis\obj\Debug\6-AtribuicoesDeVariaveis.pdb
