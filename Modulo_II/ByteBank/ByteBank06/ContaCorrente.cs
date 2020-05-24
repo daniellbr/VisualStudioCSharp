@@ -5,7 +5,20 @@
         public Cliente titular;
         public int agencia;
         public int numeroConta;
-        public double saldo = 100;
+        private double saldo = 100;
+
+        public void DefinirSaldo(double saldo)
+        {
+            if (saldo < 0)
+                return;
+            this.saldo += saldo;
+        }
+
+        public double ObterSalto()
+        {
+            return this.saldo;
+        }
+
 
         public bool Sacar(double valor)
         {
@@ -15,7 +28,6 @@
             this.saldo -= valor;
             return true;
         }
-
 
         public string Depositar(double valor)
         {
