@@ -13,11 +13,11 @@ namespace ByteBank06
         {
             ContaCorrente conta = new ContaCorrente();
 
-            Console.WriteLine(conta.ObterSalto());
+            Console.WriteLine(conta.GetSalto());
 
-            conta.DefinirSaldo(1);
+            conta.SetSaldo(1);
 
-            Console.WriteLine(conta.ObterSalto());
+            Console.WriteLine(conta.GetSalto());
 
 
             Console.ReadLine();

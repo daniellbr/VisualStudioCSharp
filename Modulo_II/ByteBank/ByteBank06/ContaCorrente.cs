@@ -7,14 +7,14 @@
         public int numeroConta;
         private double saldo = 100;
 
-        public void DefinirSaldo(double saldo)
+        public void SetSaldo(double saldo)
         {
             if (saldo < 0)
                 return;
             this.saldo += saldo;
         }
 
-        public double ObterSalto()
+        public double GetSalto()
         {
             return this.saldo;
         }
