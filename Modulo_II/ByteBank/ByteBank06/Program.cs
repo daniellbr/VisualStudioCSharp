@@ -16,9 +16,9 @@ namespace ByteBank06
 
             Console.WriteLine(conta.Saldo);
 
-            cliente.nome = "daniel";
-            cliente.cpf = "1234556677";
-            cliente.profissao = "tester";
+            cliente.Nome = "daniel";
+            cliente.CPF = "1234556677";
+            cliente.Profissao = "tester";
 
             conta.Titular = cliente;
 
