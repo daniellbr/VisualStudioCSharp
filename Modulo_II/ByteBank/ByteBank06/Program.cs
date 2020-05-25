@@ -12,12 +12,20 @@ namespace ByteBank06
         static void Main(string[] args)
         {
             ContaCorrente conta = new ContaCorrente();
+            Cliente cliente = new Cliente();
 
-            Console.WriteLine(conta.GetSalto());
+            Console.WriteLine(conta.Saldo);
 
-            conta.SetSaldo(1);
+            cliente.nome = "daniel";
+            cliente.cpf = "1234556677";
+            cliente.profissao = "tester";
 
-            Console.WriteLine(conta.GetSalto());
+            conta.Titular = cliente;
+
+
+            conta.Saldo = 1;
+
+            Console.WriteLine(conta.Saldo);
 
 
             Console.ReadLine();

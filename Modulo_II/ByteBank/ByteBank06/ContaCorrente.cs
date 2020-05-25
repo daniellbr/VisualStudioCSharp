@@ -1,43 +1,48 @@
 ﻿namespace ByteBank_06
 {
     class ContaCorrente
-    {
-        public Cliente titular;
+    {      
+        public Cliente Titular {get;set;}
+
         public int agencia;
         public int numeroConta;
-        private double saldo = 100;
+        private double _saldo = 100;
 
-        public void SetSaldo(double saldo)
+
+
+        public double Saldo
         {
-            if (saldo < 0)
-                return;
-            this.saldo += saldo;
-        }
+            get
+            {
+                return this._saldo;
+            }
+            set
+            {
+                if (value < 0)
+                    return;
 
-        public double GetSalto()
-        {
-            return this.saldo;
+                this._saldo = value;
+            }
         }
-
 
         public bool Sacar(double valor)
         {
-            if (this.saldo <= valor)
+            if (this._saldo <= valor)
                 return false;
 
-            this.saldo -= valor;
+            this._saldo -= valor;
             return true;
         }
 
         public string Depositar(double valor)
         {
-            this.saldo += valor;
-            return "Deposito efetuado com Sucesso de " + valor + ". Seu saldo agora é : " + this.saldo;
+            this._saldo += valor;
+            return "Deposito efetuado com Sucesso de " + valor + ". Seu saldo agora é : " + this._saldo;
         }
 
         public bool Transferir(double valor, ContaCorrente contaDestino)
         {
-            if (this.saldo <= valor)
+            if (this._saldo <= valor)
                 return false;
 
             this.Sacar(valor);
