@@ -23,15 +23,9 @@ namespace ByteBank.Funcionarios
             Salario = salario;
         }
 
-        public virtual double GetBonificacao()
-        {
-            return  Salario *= 1.10;
-        }      
+        public abstract double GetBonificacao();
 
-        public virtual void AumentarSalario()
-        {
-            Salario *= 1.10;
-        }
+        public abstract void AumentarSalario();
             
         public static double MaiorSalario(double a, double b, double c)
         {

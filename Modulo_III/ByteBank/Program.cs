@@ -21,6 +21,7 @@ namespace ByteBank
         {
             GerenciadorBonificacao gerenciadorBonificacao = new GerenciadorBonificacao();
 
+            //Criando utilizando o polimorfismo pois a variavel criada pedro é do tipo Funcionário mas a variavel criada é do tipo Designer que herda as funcionalidades de funcionário
             Funcionario pedro = new Designer("132.445.889-20");
             pedro.Nome = "Pedro";
 
