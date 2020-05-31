@@ -12,56 +12,98 @@ namespace ByteBank
     {
         static void Main(string[] args)
         {
-            GerenciadorBonificacao gerenciador = new GerenciadorBonificacao();
-
-            Funcionario joao = new Funcionario();
-            joao.Nome = "Joao Francisco";
-            joao.Salario = 2000;
-            joao.CPF = "113.446.223-56";
-            Console.WriteLine("total de funcionarios " + Funcionario.TotalDeFuncionarios);
-            Console.WriteLine("Salario inicial " + joao.Nome + ' ' + joao.Salario);
-            joao.Salario = joao.Salario + joao.GetBonificacao();
-            gerenciador.Registrar(joao);
-            Console.WriteLine("Salario com bonificação " + joao.Nome + ' ' + joao.Salario);
-            Console.WriteLine();
-            Console.WriteLine("O total de bonificação até o momento é : " + gerenciador.GetTotalBonificacao());
-
-            Console.WriteLine();
-            Console.WriteLine();
-
-            Funcionario carlos = new Funcionario();            
-            carlos.Nome = "Carlos Delaviega";            
-            carlos.Salario = 1000;            
-            carlos.CPF = "522.556.665-20";
-            Console.WriteLine("total de funcionarios " + Funcionario.TotalDeFuncionarios);                                   
-            Console.WriteLine("Salario inicial " + carlos.Nome + ' ' + carlos.Salario);            
-            carlos.Salario = carlos.Salario + carlos.GetBonificacao();
-            gerenciador.Registrar(carlos);
-            Console.WriteLine("Salario com bonificação " + carlos.Nome + ' ' + carlos.Salario);
-            Console.WriteLine();
-            Console.WriteLine("O total de bonificação até o momento é : " + gerenciador.GetTotalBonificacao());
-            
-            Console.WriteLine();
-            Console.WriteLine();
-
-            Diretor roberta = new Diretor();
-            roberta.Nome = "Roberta";
-            roberta.Salario = 5000;
-            roberta.CPF = "444.535.564-20";
-            Console.WriteLine("total de funcionarios " + Funcionario.TotalDeFuncionarios);
-            Console.WriteLine("Salario inicial " + roberta.Nome + roberta.Salario);
-            roberta.Salario = roberta.Salario + roberta.GetBonificacao();            
-            gerenciador.Registrar(roberta);
-            Console.WriteLine("Salario com bonificação " + roberta.Nome + ' ' + roberta.Salario);
-            Console.WriteLine();
-            Console.WriteLine("O total de bonificação até o momento é : " + gerenciador.GetTotalBonificacao());
-
-            Console.WriteLine();
-            Console.WriteLine();
-
-            Console.WriteLine("O maior salário é " + Funcionario.MaiorSalario(joao.Salario, carlos.Salario, roberta.Salario));
+            CalculaBonificacao();
 
             Console.ReadLine();
         }
+
+        public static void CalculaBonificacao()
+        {
+            GerenciadorBonificacao gerenciadorBonificacao = new GerenciadorBonificacao();
+
+            Funcionario pedro = new Designer("132.445.889-20");
+            pedro.Nome = "Pedro";
+
+            Funcionario roberta = new Diretor("321.323.545-34");
+            roberta.Nome = "Roberta";
+
+            Funcionario igor = new Auxiliar("443.443.545-42");
+            igor.Nome = "Igor";
+
+            Funcionario camila = new GerenteDeConta("995.546.767-55");
+            igor.Nome = "Camila";
+
+            gerenciadorBonificacao.Registrar(pedro);
+            gerenciadorBonificacao.Registrar(roberta);
+            gerenciadorBonificacao.Registrar(igor);
+            gerenciadorBonificacao.Registrar(camila);
+
+            Console.WriteLine("O total de bonificação deste mês foi: " + gerenciadorBonificacao.GetTotalBonificacao());
+
+            Console.WriteLine("O maior salario da empresa é: " + Funcionario.MaiorSalario(pedro.Salario, roberta.Salario, igor.Salario));
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+        // Comentado para fazer de uma maneira mais limpa pois assim está muito desorganizado
+
+
+        //GerenciadorBonificacao gerenciador = new GerenciadorBonificacao();
+
+        //Funcionario joao = new Funcionario(2000, "113.446.223-56");
+        //joao.Nome = "Joao Francisco";                    
+        //Console.WriteLine("total de funcionarios " + Funcionario.TotalDeFuncionarios);
+        //Console.WriteLine("Salario inicial " + joao.Nome + ' ' + joao.Salario);
+        ////joao.Salario = joao.Salario + joao.GetBonificacao();
+        //gerenciador.Registrar(joao);
+        //Console.WriteLine("Salario com bonificação " + joao.Nome + ' ' + joao.Salario);
+        //Console.WriteLine();
+        //Console.WriteLine("O total de bonificação até o momento é : " + gerenciador.GetTotalBonificacao());
+
+        //Console.WriteLine();
+        //Console.WriteLine();
+
+        //Funcionario carlos = new Funcionario(1000, "522.556.665-20");            
+        //carlos.Nome = "Carlos Delaviega";
+        //Console.WriteLine("total de funcionarios " + Funcionario.TotalDeFuncionarios);                                   
+        //Console.WriteLine("Salario inicial " + carlos.Nome + ' ' + carlos.Salario);            
+        ////carlos.Salario = carlos.Salario + carlos.GetBonificacao();
+        //gerenciador.Registrar(carlos);
+        //Console.WriteLine("Salario com bonificação " + carlos.Nome + ' ' + carlos.Salario);
+        //carlos.AumentarSalario();
+        //Console.WriteLine("Salario após aumento salario" + carlos.Nome + ' ' + carlos.Salario);
+        //Console.WriteLine();
+        //Console.WriteLine("O total de bonificação até o momento é : " + gerenciador.GetTotalBonificacao());
+
+        //Console.WriteLine();
+        //Console.WriteLine();
+
+        //Diretor roberta = new Diretor(5000, "444.535.564 - 20");
+        //roberta.Nome = "Roberta";            
+        //Console.WriteLine("total de funcionarios " + Funcionario.TotalDeFuncionarios);
+        //Console.WriteLine("Salario inicial " + roberta.Nome + roberta.Salario);            
+        //gerenciador.Registrar(roberta);
+        //Console.WriteLine("Salario com bonificação " + roberta.Nome + ' ' + roberta.Salario);
+        //roberta.AumentarSalario();
+        //Console.WriteLine("Salario após o aumento " + roberta.Nome + roberta.Salario);
+
+        //Console.WriteLine();
+        //Console.WriteLine("O total de bonificação até o momento é : " + gerenciador.GetTotalBonificacao());
+
+        //Console.WriteLine();
+        //Console.WriteLine();
+
+        //Console.WriteLine("O maior salário é " + Funcionario.MaiorSalario(joao.Salario, carlos.Salario, roberta.Salario));
+
+
     }
 }
