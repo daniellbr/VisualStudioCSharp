@@ -33,6 +33,11 @@ namespace ByteBank
             camila.Nome = "Camila";
             camila.Senha = "aaa";
 
+            ParceiroComercial parceiro = new ParceiroComercial();
+            parceiro.Senha = "xxxx";
+
+            sistemaInterno.Logar(parceiro, "xxxx");
+
             sistemaInterno.Logar(roberta, "123");
             sistemaInterno.Logar(roberta, "1212");
             sistemaInterno.Logar(camila, "aa2");
