@@ -10,6 +10,10 @@ namespace ByteBank07
     {
         public double Saldo { get; }
         public double ValorSaque { get; }
+        public SaldoInsuficienteException()
+        {
+
+        }
         public SaldoInsuficienteException(double saldo, double valoSaque) 
             :this("Tentativa de saque no valor de " + valoSaque + " em uma conta com o saldo de " + saldo)
         {
@@ -17,12 +21,13 @@ namespace ByteBank07
             ValorSaque = valoSaque;            
         }
 
-        public SaldoInsuficienteException()
+        public SaldoInsuficienteException(string message) :base(message)
         {
 
         }
 
-        public SaldoInsuficienteException(string message) :base(message)
+        public SaldoInsuficienteException(string mensagem, Exception excecaoInterna) 
+            : base(mensagem, excecaoInterna)
         {
 
         }

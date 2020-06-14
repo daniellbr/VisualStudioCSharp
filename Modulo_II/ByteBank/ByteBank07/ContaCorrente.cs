@@ -93,7 +93,7 @@ namespace ByteBank_07
             catch (SaldoInsuficienteException ex)
             {
                 ContadorSaquesNaoPermitidos++;
-                throw new SaldoInsuficienteException("Transferencia não permitida!", ex);
+                throw new Exception("Transferencia não permitida!", ex);
             }
 
             contaDestino.Depositar(valor);

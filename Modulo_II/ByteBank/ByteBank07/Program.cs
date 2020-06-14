@@ -1,7 +1,9 @@
 ﻿using ByteBank_07;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,49 +14,61 @@ namespace ByteBank07
     {
         static void Main(string[] args)
         {
-
             try
             {
-                criarContaEClientesTeste();               
+                CarregarContas();
             }
-            catch (SaldoInsuficienteException ex)
+            catch (IOException)
             {
-                Console.WriteLine(ex.Saldo);
-                Console.WriteLine(ex.ValorSaque);
-                Console.WriteLine(ex.Message);
-                Console.WriteLine("Exceção do tipo SaldoInsuficienteException.");
-                Console.WriteLine(ex.StackTrace);
+                Console.WriteLine("Erro de IOException capturada e tradada!");
             }
-
-            catch (ArgumentException e)
-            {
-                Console.WriteLine("Ocorreu um erro do tipo ArgumentException.");
-                Console.WriteLine(e);
-            }
-
-
-
-            catch (Exception e)
-            {
-                Console.WriteLine("Ocorreu um erro!" + e);                
-            }
+            
+          
             Console.ReadLine();
         }
 
+
+        public static void CarregarContas()
+        {
+            LeitorDeArquivo leitorDeArquivo = new LeitorDeArquivo("contas.txt");
+
+            leitorDeArquivo.LendoProximaLinha();
+            leitorDeArquivo.LendoProximaLinha();
+            leitorDeArquivo.LendoProximaLinha();
+            leitorDeArquivo.LendoProximaLinha();
+
+            leitorDeArquivo.Fechar();
+        }
+
+        public static void TestarInnerException()
+        {
+            try
+            {
+                criarContaEClientesTeste();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine(e.StackTrace);
+
+                Console.WriteLine("Agora o StackTrace do InnerException");
+
+                Console.WriteLine(e.InnerException.Message);
+                Console.WriteLine(e.InnerException.StackTrace);
+
+
+            }
+        }
+
+
         public static void criarContaEClientesTeste()
         {
-            ContaCorrente conta = new ContaCorrente(55,4520);
-            Cliente cliente1 = new Cliente();
-            cliente1.Nome = "João";
-            cliente1.CPF = "123.454.789-20";
-            cliente1.Profissao = "Desenvolvedor";            
-            conta.Titular = cliente1;
-
+            ContaCorrente conta = new ContaCorrente(55,4520);            
             ContaCorrente conta1 = new ContaCorrente(45, 545454);
 
-            conta.Transferir(150, conta1);
+           // conta.Transferir(150, conta1);
            // conta.Depositar(100);
-           // conta.Sacar(-300);
+            conta.Sacar(2300);
             
             //Console.WriteLine(ContaCorrente.TaxaOperacao);
 
