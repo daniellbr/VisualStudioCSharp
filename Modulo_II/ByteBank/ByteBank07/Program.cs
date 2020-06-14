@@ -14,30 +14,36 @@ namespace ByteBank07
     {
         static void Main(string[] args)
         {
-            try
-            {
-                CarregarContas();
-            }
-            catch (IOException)
-            {
-                Console.WriteLine("Erro de IOException capturada e tradada!");
-            }
-            
-          
+            CarregarContas();
+
             Console.ReadLine();
         }
 
 
         public static void CarregarContas()
         {
-            LeitorDeArquivo leitorDeArquivo = new LeitorDeArquivo("contas.txt");
+            LeitorDeArquivo leitorDeArquivo = null;
+            try
+            {
+                leitorDeArquivo = new LeitorDeArquivo("contas.txt");
+                leitorDeArquivo.LendoProximaLinha();
+                leitorDeArquivo.LendoProximaLinha();
+                leitorDeArquivo.LendoProximaLinha();
+                leitorDeArquivo.LendoProximaLinha();
 
-            leitorDeArquivo.LendoProximaLinha();
-            leitorDeArquivo.LendoProximaLinha();
-            leitorDeArquivo.LendoProximaLinha();
-            leitorDeArquivo.LendoProximaLinha();
+            }
+            catch (IOException)
+            {
+                Console.WriteLine("Erro de IOException capturada e tradada!");
+            }
+            finally
+            {
+                if (leitorDeArquivo != null)
+                {
+                    leitorDeArquivo.Fechar();
+                }
+            }
 
-            leitorDeArquivo.Fechar();
         }
 
         public static void TestarInnerException()
@@ -63,13 +69,13 @@ namespace ByteBank07
 
         public static void criarContaEClientesTeste()
         {
-            ContaCorrente conta = new ContaCorrente(55,4520);            
+            ContaCorrente conta = new ContaCorrente(55, 4520);
             ContaCorrente conta1 = new ContaCorrente(45, 545454);
 
-           // conta.Transferir(150, conta1);
-           // conta.Depositar(100);
+            // conta.Transferir(150, conta1);
+            // conta.Depositar(100);
             conta.Sacar(2300);
-            
+
             //Console.WriteLine(ContaCorrente.TaxaOperacao);
 
             ////conta.Titular.Nome = "João";
