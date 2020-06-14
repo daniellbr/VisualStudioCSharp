@@ -3,7 +3,7 @@ using System.IO;
 
 namespace ByteBank07
 {
-    public class LeitorDeArquivo
+    public class LeitorDeArquivo : IDisposable
     {
         public string Arquivo { get; }
 
@@ -12,7 +12,7 @@ namespace ByteBank07
 
             Arquivo = arquivo;
 
-            throw new FileNotFoundException();
+           // throw new FileNotFoundException();
 
             Console.WriteLine("Abrindo arquivo: " + arquivo);
         }
@@ -26,9 +26,9 @@ namespace ByteBank07
             return "Linha do arquivo";
         }
 
-        public void Fechar()
+        public void Dispose()
         {
-            Console.WriteLine("Fechando arquivo.");
+            Console.WriteLine("Fechando o arquivo.");
         }
 
     }

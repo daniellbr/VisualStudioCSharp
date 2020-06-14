@@ -22,27 +22,35 @@ namespace ByteBank07
 
         public static void CarregarContas()
         {
-            LeitorDeArquivo leitorDeArquivo = null;
-            try
+            using (LeitorDeArquivo leitorDeArquivo = new LeitorDeArquivo("arquivo.txt"))
             {
-                leitorDeArquivo = new LeitorDeArquivo("contas.txt");
                 leitorDeArquivo.LendoProximaLinha();
-                leitorDeArquivo.LendoProximaLinha();
-                leitorDeArquivo.LendoProximaLinha();
-                leitorDeArquivo.LendoProximaLinha();
+            }
+                
 
-            }
-            catch (IOException)
-            {
-                Console.WriteLine("Erro de IOException capturada e tradada!");
-            }
-            finally
-            {
-                if (leitorDeArquivo != null)
-                {
-                    leitorDeArquivo.Fechar();
-                }
-            }
+
+
+            //LeitorDeArquivo leitorDeArquivo = null;
+            //try
+            //{
+            //    leitorDeArquivo = new LeitorDeArquivo("contas.txt");
+            //    leitorDeArquivo.LendoProximaLinha();
+            //    leitorDeArquivo.LendoProximaLinha();
+            //    leitorDeArquivo.LendoProximaLinha();
+            //    leitorDeArquivo.LendoProximaLinha();
+
+            //}
+            //catch (IOException)
+            //{
+            //    Console.WriteLine("Erro de IOException capturada e tradada!");
+            //}
+            //finally
+            //{
+            //    if (leitorDeArquivo != null)
+            //    {
+            //        leitorDeArquivo.Fechar();
+            //    }
+            //}
 
         }
 
