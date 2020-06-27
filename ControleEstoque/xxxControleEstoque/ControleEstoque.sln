@@ -11,9 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03 - Domain", "03 - Domain"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04 - Data", "04 - Data", "{67FE8EA7-E867-4A81-B287-9BE5094C6DCE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControleEstoque.Domain", "ControleEstoque.Domain\ControleEstoque.Domain.csproj", "{884C96C3-DC09-4226-A224-5DE14A6BAD34}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControleEstoque.Data", "ControleEstoque.Data\ControleEstoque.Data.csproj", "{B44D863D-4393-4C8E-916C-D75086533F68}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControleEstoque.Domain", "ControleEstoque.Domain\ControleEstoque.Domain.csproj", "{884C96C3-DC09-4226-A224-5DE14A6BAD34}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,17 +23,12 @@ Global
 		{884C96C3-DC09-4226-A224-5DE14A6BAD34}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{884C96C3-DC09-4226-A224-5DE14A6BAD34}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{884C96C3-DC09-4226-A224-5DE14A6BAD34}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B44D863D-4393-4C8E-916C-D75086533F68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B44D863D-4393-4C8E-916C-D75086533F68}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B44D863D-4393-4C8E-916C-D75086533F68}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B44D863D-4393-4C8E-916C-D75086533F68}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{884C96C3-DC09-4226-A224-5DE14A6BAD34} = {53D445AF-8052-4FC2-900E-2D0972F3B510}
-		{B44D863D-4393-4C8E-916C-D75086533F68} = {67FE8EA7-E867-4A81-B287-9BE5094C6DCE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2FEA4EE0-469B-4ACD-88CA-86374377A7C7}
