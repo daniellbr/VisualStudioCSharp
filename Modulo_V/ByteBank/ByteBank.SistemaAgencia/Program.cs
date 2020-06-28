@@ -2,6 +2,7 @@
 using Humanizer;
 using System;
 using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
 
 namespace ByteBank.SistemaAgencia
 {
@@ -9,6 +10,43 @@ namespace ByteBank.SistemaAgencia
     {
         static void Main(string[] args)
         {
+
+
+            string padrao = "[012345679][012345679][012345679][012345679][-][012345679][012345679][012345679][012345679]";
+
+            string textoDeTeste = "Eu tenho um telefone cujo o número é 4599-5509";
+
+            Console.WriteLine(Regex.IsMatch(textoDeTeste, padrao));
+
+            Match resultado = Regex.Match(textoDeTeste, padrao);
+
+            Console.WriteLine(resultado);
+
+            Console.ReadLine();
+
+
+            string endereco = "R. São Carlos do Pinhal nº746";
+            string enderecoFormatado = endereco.ToUpper() .Replace("r.", "Rua") .Replace(" nº", ", Número ") .ToUpper();
+
+            Console.WriteLine(enderecoFormatado);
+
+
+
+
+
+
+            string urlByteBank = "https://www.bybtebank.com.br/cambio";
+
+            Console.WriteLine(urlByteBank.StartsWith("https://www.bybtebank.com.br"));
+            Console.WriteLine(urlByteBank.EndsWith("/cambio."));
+
+            Console.WriteLine(urlByteBank.Contains("ank."));
+
+
+
+            Console.ReadLine();
+
+
 
             string url = "www.byebanck.com.br/cambio/conversao/serach?moedaOrigem=real&moedaDestino=dolar";
 
