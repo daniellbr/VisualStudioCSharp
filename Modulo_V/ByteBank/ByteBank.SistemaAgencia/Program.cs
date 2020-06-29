@@ -8,11 +8,34 @@ namespace ByteBank.SistemaAgencia
 {
     class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
 
 
-            string padrao = "[012345679][012345679][012345679][012345679][-][012345679][012345679][012345679][012345679]";
+
+
+
+
+
+
+
+
+
+            TestaString();
+
+            //TrataDataEHumanize();
+            //TratamentoDeStringESubstring();
+            Console.ReadLine();
+        }
+
+        public void static TestaString()
+        {
+            string padrao5 = "[012345679][012345679][012345679][012345679][-][012345679][012345679][012345679][012345679]";
+            string padrao4 = "[0-9][0-9][0-9][0-9][-][0-9][0-9][0-9][0-9]"; //Esse padrão o .net reconhece tb pois ele procura dentro do range 0-9
+            string padrao3 = "[0-9]{4} [-] [0-9]{4}"; //Esse padrão tb funcina pq ele diz que esse array vai acontecer por 4 vezes
+            string padrao2 = "[0-9]{4,5} [-] [0-9]{4}"; //Desta maneira ele aceita 4 ou 5 caracteres 
+            string padrao1 = "[0-9]{4,5} [-]{0,1} [0-9]{4}"; //Desta maneira ele aceita 4 ou 5 caracteres para o telefone e também aceita sem o ifem e com o ifem
+            string padrao = "[0-9]{4,5}-?[0-9]{4}"; //Assim fica ainda mais enxuto o código por ser somente um carcter e aceitar 0 e 1 pode-se colocar a ?
 
             string textoDeTeste = "Eu tenho um telefone cujo o número é 4599-5509";
 
@@ -26,7 +49,7 @@ namespace ByteBank.SistemaAgencia
 
 
             string endereco = "R. São Carlos do Pinhal nº746";
-            string enderecoFormatado = endereco.ToUpper() .Replace("r.", "Rua") .Replace(" nº", ", Número ") .ToUpper();
+            string enderecoFormatado = endereco.ToUpper().Replace("r.", "Rua").Replace(" nº", ", Número ").ToUpper();
 
             Console.WriteLine(enderecoFormatado);
 
@@ -58,9 +81,16 @@ namespace ByteBank.SistemaAgencia
             string valorRemovido = testeRemocao.Remove(buscaE);
 
             Console.WriteLine(valorRemovido);
-                       
-            Console.ReadLine();
 
+            Console.ReadLine();
+            string texto = "pagina?moedaOrigem=real&moedaDestino=dolar";
+
+            int ind = texto.IndexOf("Gustavo");
+            string texto2 = texto.Substring(ind + 1);
+
+            Console.WriteLine("tamanho " + texto.Length); //12
+            Console.WriteLine("indice " + ind); //6
+            Console.WriteLine(texto2); //Silv
 
             //string palavra = "moedaOrigem=real&moedaDestino=dolar"; 
             //string novoArgumento = "moedaDestino";
@@ -74,27 +104,7 @@ namespace ByteBank.SistemaAgencia
             //Console.WriteLine(indiceInicioArgumento);
             //Console.WriteLine(indiceTamanhoNovoArgumento);
             //Console.WriteLine(_arguementos);
-        
 
-
-
-
-
-
-
-
-            string texto = "pagina?moedaOrigem=real&moedaDestino=dolar";
-
-            int ind = texto.IndexOf("Gustavo");
-            string texto2 = texto.Substring(ind + 1);
-
-            Console.WriteLine("tamanho " + texto.Length); //12
-            Console.WriteLine("indice " + ind); //6
-            Console.WriteLine(texto2); //Silva
-
-            //TrataDataEHumanize();
-            //TratamentoDeStringESubstring();
-            Console.ReadLine();
         }
         static void TrataDataEHumanize()
         {
