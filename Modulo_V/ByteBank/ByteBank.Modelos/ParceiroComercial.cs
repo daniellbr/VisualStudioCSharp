@@ -3,7 +3,7 @@ using ByteBank.Sistema;
 
 namespace ByteBank
 {
-    class ParceiroComercial : IAutenticavel
+    public class ParceiroComercial : IAutenticavel
     {
         private AutenticacaoHelper _autenticacaoHelper = new AutenticacaoHelper();
         

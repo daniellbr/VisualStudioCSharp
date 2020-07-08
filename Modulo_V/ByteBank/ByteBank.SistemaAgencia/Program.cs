@@ -1,34 +1,51 @@
-﻿using ByteBank.Modelos;
-using Humanizer;
+﻿using Humanizer;
 using System;
-using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 
 namespace ByteBank.SistemaAgencia
 {
     class Program
     {
-        public static void Main(string[] args)
+       static void Main(string[] args)
         {
 
+            Cliente joao = new Cliente();
+            joao.Profissao = "Carteiro";
+            joao.Nome = "João";
+            joao.CPF = "21212121";
 
+            Cliente joao2 = new Cliente();
+            joao2.Profissao = "Carteiro";
+            joao2.Nome = "João";
+            joao2.CPF = "21212121";
 
+            ContaCorrente conta2 = new ContaCorrente(343, 43466);
 
+            if (joao.Equals(conta2))
+            {
+                Console.WriteLine("São iguais");
+            }
+            else
+            {
+                Console.WriteLine("Não são iguais");
+            }
 
+            Cliente cliente = new Cliente();
+            object conta = new ContaCorrente(223, 434343);
+            object designer = new Designer("545065");
+            object desenv = new Desenvolvedor("34343");
+            Console.WriteLine(cliente);
+            Console.WriteLine(conta); 
+            Console.WriteLine(designer);
+            Console.WriteLine(desenv);            
 
-
-
-
-
-
-            TestaString();
-
+            //TestaString();
             //TrataDataEHumanize();
             //TratamentoDeStringESubstring();
             Console.ReadLine();
         }
 
-        public void static TestaString()
+        public static void TestaString()
         {
             string padrao5 = "[012345679][012345679][012345679][012345679][-][012345679][012345679][012345679][012345679]";
             string padrao4 = "[0-9][0-9][0-9][0-9][-][0-9][0-9][0-9][0-9]"; //Esse padrão o .net reconhece tb pois ele procura dentro do range 0-9
@@ -110,6 +127,7 @@ namespace ByteBank.SistemaAgencia
         {
             DateTime dateEndPayment = new DateTime(2018, 4, 21);
 
+            object data = new DateTime(2222, 4, 21);
             DateTime CurrentDate = DateTime.Now;
 
             TimeSpan diferenca = TimeSpan.FromMinutes(32);
@@ -117,6 +135,7 @@ namespace ByteBank.SistemaAgencia
             string mensagem = "O valor é " + TimeSpanHumanizeExtensions.Humanize(diferenca);
 
             Console.WriteLine(mensagem);
+            Console.WriteLine();
         }        
 
         static void TratamentoDeStringESubstring()

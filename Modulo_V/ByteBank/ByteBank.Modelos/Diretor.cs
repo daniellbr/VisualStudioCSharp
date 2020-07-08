@@ -2,7 +2,7 @@
 
 namespace ByteBank
 {
-    class Diretor : FuncionarioAutenticavel
+    public class Diretor : FuncionarioAutenticavel
     {        
         public Diretor(string cpf) : base(5000, cpf)
         {

@@ -121,5 +121,12 @@ namespace ByteBank
         {
             return numero / divisor;
         }
+
+        public override string ToString()
+        {
+            return $"Número {NumeroConta}, Agêcia {Agencia}, Saldo {Saldo}";
+            //Esta  é uma maneira acima, é um pouco mais limpa para apresentar os valores sem ter a necessidade de concatenar.
+            //return "Número " + NumeroConta + ", Agencia " + Agencia + " Saldo " + Saldo;
+        }
     }
 }
