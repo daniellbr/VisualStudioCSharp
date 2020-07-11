@@ -8,40 +8,7 @@ namespace ByteBank.SistemaAgencia
     {
        static void Main(string[] args)
         {
-
-            Cliente joao = new Cliente();
-            joao.Profissao = "Carteiro";
-            joao.Nome = "João";
-            joao.CPF = "21212121";
-
-            Cliente joao2 = new Cliente();
-            joao2.Profissao = "Carteiro";
-            joao2.Nome = "João";
-            joao2.CPF = "21212121";
-
-            ContaCorrente conta2 = new ContaCorrente(343, 43466);
-
-            if (joao.Equals(conta2))
-            {
-                Console.WriteLine("São iguais");
-            }
-            else
-            {
-                Console.WriteLine("Não são iguais");
-            }
-
-            Cliente cliente = new Cliente();
-            object conta = new ContaCorrente(223, 434343);
-            object designer = new Designer("545065");
-            object desenv = new Desenvolvedor("34343");
-            Console.WriteLine(cliente);
-            Console.WriteLine(conta); 
-            Console.WriteLine(designer);
-            Console.WriteLine(desenv);            
-
-            //TestaString();
-            //TrataDataEHumanize();
-            //TratamentoDeStringESubstring();
+            TestaArray();
             Console.ReadLine();
         }
 
@@ -148,5 +115,70 @@ namespace ByteBank.SistemaAgencia
             string recebeSubstring = url.Substring(indiceInterrogacao + 1);
             Console.WriteLine(recebeSubstring);
         }
+
+        static void EqualsToString()
+        {
+
+            Cliente joao = new Cliente();
+            joao.Profissao = "Carteiro";
+            joao.Nome = "João";
+            joao.CPF = "21212121";
+
+            Cliente joao2 = new Cliente();
+            joao2.Profissao = "Carteiro";
+            joao2.Nome = "João";
+            joao2.CPF = "21212121";
+
+            ContaCorrente conta2 = new ContaCorrente(343, 43466);
+
+            if (joao.Equals(conta2))
+            {
+                Console.WriteLine("São iguais");
+            }
+            else
+            {
+                Console.WriteLine("Não são iguais");
+            }
+
+            Cliente cliente = new Cliente();
+            object conta = new ContaCorrente(223, 434343);
+            object designer = new Designer("545065");
+            object desenv = new Desenvolvedor("34343");
+            Console.WriteLine(cliente);
+            Console.WriteLine(conta);
+            Console.WriteLine(designer);
+            Console.WriteLine(desenv);
+
+            //TestaString();
+            //TrataDataEHumanize();
+            //TratamentoDeStringESubstring();
+        }
+
+        static void TestaArray()
+        {
+
+            int[] idades = new int[5];
+
+            idades[0] = 10;
+            idades[1] = 12;
+            idades[2] = 15;
+            idades[3] = 17;
+            idades[4] = 19;
+
+            int acumulador = 0;
+            for (int indice = 0; indice < idades.Length; indice++)
+            {
+                int idade = idades[indice];
+                acumulador += idade;
+
+                Console.WriteLine($"O valor da idade é {idade}, no indice  {indice}");
+            }
+
+            Console.WriteLine($"A média de idade é {acumulador / idades.Length}");
+                                   
+            Console.ReadLine();
+
+        }
+
     }
 }
