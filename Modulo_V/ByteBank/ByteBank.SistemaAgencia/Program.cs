@@ -8,7 +8,27 @@ namespace ByteBank.SistemaAgencia
     {
        static void Main(string[] args)
         {
-            TestaArray();
+
+            
+            ListaDeContaCorrente lista = new ListaDeContaCorrente();
+
+            lista.Adicionar(new ContaCorrente(121, 545454));
+            lista.Adicionar(new ContaCorrente(121, 545323));
+            lista.Adicionar(new ContaCorrente(121, 546564));
+            lista.Adicionar(new ContaCorrente(121, 545671));
+            lista.Adicionar(new ContaCorrente(121, 545672));
+            lista.Adicionar(new ContaCorrente(121, 545673));
+            lista.Adicionar(new ContaCorrente(121, 545674));
+            lista.Adicionar(new ContaCorrente(121, 545675));
+            lista.Adicionar(new ContaCorrente(121, 545676));
+            lista.Adicionar(new ContaCorrente(121, 545677));
+            lista.Adicionar(new ContaCorrente(121, 545678));
+            lista.Adicionar(new ContaCorrente(121, 545679));
+            lista.Adicionar(new ContaCorrente(121, 545610));
+            lista.Adicionar(new ContaCorrente(121, 545611));
+
+
+
             Console.ReadLine();
         }
 
