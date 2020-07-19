@@ -128,5 +128,19 @@ namespace ByteBank
             //Esta  é uma maneira acima, é um pouco mais limpa para apresentar os valores sem ter a necessidade de concatenar.
             //return "Número " + NumeroConta + ", Agencia " + Agencia + " Saldo " + Saldo;
         }
+
+        public override bool Equals(object obj)
+        {
+            ContaCorrente outraConta = obj as ContaCorrente;
+
+            if (outraConta == null)
+            {
+                return false;
+            }
+
+            return outraConta.Agencia == Agencia && outraConta.NumeroConta == NumeroConta; //Como estamos retornando um bool não há necessidade de fazermos um IF
+            
+        }
+
     }
 }
