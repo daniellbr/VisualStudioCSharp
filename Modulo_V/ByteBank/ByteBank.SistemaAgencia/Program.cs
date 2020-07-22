@@ -10,25 +10,26 @@ namespace ByteBank.SistemaAgencia
         {
 
             
-            ListaDeContaCorrente lista = new ListaDeContaCorrente(capacidadeInicial: 10);
+            ListaDeContaCorrente lista = new ListaDeContaCorrente(capacidadeInicial: 20);
             ContaCorrente contaTeste = new ContaCorrente(33333,4343343);
             
 
-            lista.Adicionar(new ContaCorrente(565, 877987));
-            lista.Adicionar(new ContaCorrente(121, 545323));
-            lista.Adicionar(new ContaCorrente(121, 1111111564));
-            lista.Adicionar(contaTeste);
-            lista.Adicionar(new ContaCorrente(121, 545671));
-            lista.Adicionar(new ContaCorrente(121, 545672));
-            lista.Adicionar(new ContaCorrente(121, 545673));
-            lista.Adicionar(new ContaCorrente(121, 545674));
-            lista.Adicionar(new ContaCorrente(121, 545675));
-            lista.Adicionar(new ContaCorrente(121, 545676));
-            lista.Adicionar(new ContaCorrente(121, 545677));
-            lista.Adicionar(new ContaCorrente(121, 545678));
-            lista.Adicionar(new ContaCorrente(121, 545679));
-            lista.Adicionar(new ContaCorrente(121, 545610));
-            lista.Adicionar(new ContaCorrente(121, 545611));
+            lista.AdicionarVarios(new ContaCorrente(323, 434533),
+                                  new ContaCorrente(565, 877987),
+                                  new ContaCorrente(121, 545323),
+                                  new ContaCorrente(121, 111564),
+                                                      contaTeste,
+                                  new ContaCorrente(121, 545671),
+                                  new ContaCorrente(121, 545672),
+                                  new ContaCorrente(121, 545673),
+                                  new ContaCorrente(121, 545674),
+                                  new ContaCorrente(121, 545675),
+                                  new ContaCorrente(121, 545676),
+                                  new ContaCorrente(121, 545677),
+                                  new ContaCorrente(121, 545678),
+                                  new ContaCorrente(121, 545679),
+                                  new ContaCorrente(121, 545610),
+                                  new ContaCorrente(121, 545611));
 
             lista.Remover(contaTeste);
 
