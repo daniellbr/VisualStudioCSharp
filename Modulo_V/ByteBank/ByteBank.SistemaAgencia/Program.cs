@@ -10,7 +10,7 @@ namespace ByteBank.SistemaAgencia
         {
 
             
-            ListaDeContaCorrente lista = new ListaDeContaCorrente(capacidadeInicial: 20);
+            ListaDeContaCorrente lista = new ListaDeContaCorrente(capacidadeInicial: 0);
             ContaCorrente contaTeste = new ContaCorrente(33333,4343343);
             
 
@@ -179,8 +179,26 @@ namespace ByteBank.SistemaAgencia
             //TratamentoDeStringESubstring();
         }
 
+        public void TestaArrayDeContaCorrente()
+        {
+            ContaCorrente[] contas = new ContaCorrente[]
+            {
+                new ContaCorrente(334,4343553),
+                new ContaCorrente(334,5454334),
+                new ContaCorrente(334,4553432)
+            };
+
+            for (int i = 0; i < contas.Length; i++)
+            {
+                ContaCorrente contaAtual = contas[i];
+                Console.WriteLine($"Conta{i}: {contaAtual.NumeroConta}");
+            }
+        }
+
         static void TestaArray()
         {
+
+
 
             int[] idades = new int[5];
 
