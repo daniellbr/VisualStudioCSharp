@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 namespace ByteBank.SistemaAgencia
 {
     public class Lista<T>
@@ -63,7 +65,7 @@ namespace ByteBank.SistemaAgencia
                 _itens[i] = _itens[i + 1];
             }
             _proximaPosicao--;
-            _itens[_proximaPosicao] = null;
+            //_itens[_proximaPosicao] = null;
         }
 
         public void EscreverListaNaTela()
