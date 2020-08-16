@@ -10,9 +10,29 @@ namespace ByteBank.SistemaAgencia
         {
 
             
+
+            Console.ReadLine();
+        }
+
+        public static void TestaListaDeObject()
+        {
+            ListaDeObject listaDeIdades = new ListaDeObject();
+
+            listaDeIdades.Adicionar(23);
+            listaDeIdades.Adicionar(44);
+            listaDeIdades.AdicionarVarios(43, 54, 45, 33);
+
+
+            for (int i = 0; i < listaDeIdades.Tamanho; i++)
+            {
+                int idade = (int)listaDeIdades[i];
+                Console.WriteLine($"Idade no indice{i}: idade [idade]");
+            }
+
+
             ListaDeContaCorrente lista = new ListaDeContaCorrente(capacidadeInicial: 0);
-            ContaCorrente contaTeste = new ContaCorrente(33333,4343343);
-            
+            ContaCorrente contaTeste = new ContaCorrente(33333, 4343343);
+
 
             lista.AdicionarVarios(new ContaCorrente(323, 434533),
                                   new ContaCorrente(565, 877987),
@@ -34,7 +54,6 @@ namespace ByteBank.SistemaAgencia
             lista.Remover(contaTeste);
 
             lista.EscreverListaNaTela();
-            Console.ReadLine();
         }
 
         public static void TestaString()
