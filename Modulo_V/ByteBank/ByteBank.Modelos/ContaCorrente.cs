@@ -5,7 +5,7 @@ namespace ByteBank
     /// <summary>
     /// Define uma Conta Corrente para o Banco ByteBank
     /// </summary>
-    public class ContaCorrente
+    public class ContaCorrente : IComparable
     {
         public static double TaxaOperacao { get; private set; }
         public Cliente Titular { get; set; }
@@ -142,5 +142,31 @@ namespace ByteBank
             
         }
 
+        public int CompareTo(object obj)
+        {
+            // Retornar negativo  quando a instancia precede o objeto do Método CompareTo
+            // Retornar zero quando a instancia e objeto do Método CompareTo forem equivalentes
+            // Retornar positivo quando a intstancia sucede o objeto do Método CompareTo do objeto
+
+            var outraConta = obj as ContaCorrente; //Para fazer uma conversão ou CAST de obj para ContaCorrente
+                                                   // utilizar o AS pois caso a conversão falhar a ponta para nulo
+
+            if (outraConta == null)
+            {
+                return -1;
+            }
+
+            if (NumeroConta < outraConta.NumeroConta)
+            {
+                return -1;
+            }
+            if (NumeroConta == outraConta.NumeroConta)
+            {
+                return 0;
+            } 
+            
+            return 1;
+            
+        }
     }
 }
