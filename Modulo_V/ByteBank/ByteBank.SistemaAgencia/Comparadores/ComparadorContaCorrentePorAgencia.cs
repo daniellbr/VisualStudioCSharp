@@ -25,6 +25,7 @@ namespace ByteBank.SistemaAgencia.Comparadores
 
             return x.Agencia.CompareTo(y.Agencia);
 
+            //Existe este tipo de comparacao no Int e também no String
             //Este tipo de comparacao já existe embarcado no proprio .NET não sendo necessário refaze-lo
             //sendo assim a comparação abaixo não é necessária
             //if (x.Agencia < y.Agencia)
