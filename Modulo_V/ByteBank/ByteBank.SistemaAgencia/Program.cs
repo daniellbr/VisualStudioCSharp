@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using ByteBank.SistemaAgencia.Extensoes;
 using ByteBank.SistemaAgencia.Comparadores;
+using System.Linq;
 
 namespace ByteBank.SistemaAgencia
 {
@@ -14,18 +15,39 @@ namespace ByteBank.SistemaAgencia
             var contas = new List<ContaCorrente>()
             {
                 new ContaCorrente (341,453443),
+                null,
                 new ContaCorrente (344, 43465),
+                null,
                 new ContaCorrente (919, 23234),
-                new ContaCorrente (010, 23233)
+                new ContaCorrente (010, 23233),
+                null
             };
+
+
+            IOrderedEnumerable<ContaCorrente> contaOrdenada =
+
+                contas.OrderBy(conta => {
+                        if (conta == null)
+                        {
+                            return int.MaxValue;
+                        }
+                        return conta.NumeroConta;
+                    });
 
             //contas.Sort(); --> Chama a implementação que criamos no IComparable
 
-            contas.Sort(new ComparadorContaCorrentePorAgencia());
+            // contas.Sort(new ComparadorContaCorrentePorAgencia()); --> Chama a função ICompare
+            
 
-            foreach (var conta in contas)
+            foreach (var conta in contaOrdenada)
             {
-                Console.WriteLine($"Agencia {conta.Agencia} e conta {conta.NumeroConta}");
+                if (conta != null)
+                {
+                    Console.WriteLine($"Agencia {conta.Agencia} e conta {conta.NumeroConta}");
+                } else
+                { 
+                    Console.WriteLine("Conta nula"); 
+                };
 
             }
           
