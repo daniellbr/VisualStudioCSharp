@@ -24,6 +24,10 @@ namespace ByteBank.SistemaAgencia
             };
 
 
+            //contas.Sort(); --> Chama a implementação que criamos no IComparable
+
+            // contas.Sort(new ComparadorContaCorrentePorAgencia()); --> Chama a função ICompare
+            
             IOrderedEnumerable<ContaCorrente> contaOrdenada =
 
                 contas.OrderBy(conta => {
@@ -33,11 +37,6 @@ namespace ByteBank.SistemaAgencia
                         }
                         return conta.NumeroConta;
                     });
-
-            //contas.Sort(); --> Chama a implementação que criamos no IComparable
-
-            // contas.Sort(new ComparadorContaCorrentePorAgencia()); --> Chama a função ICompare
-            
 
             foreach (var conta in contaOrdenada)
             {
@@ -50,7 +49,15 @@ namespace ByteBank.SistemaAgencia
                 };
 
             }
-          
+
+            var meses = new List<string>() { "JANEIRO", "FEVEREIRO", "MARCO", "ABRIL", "MARIO", "JUNHO", "JULHO", "AGOSTO", "SETEMBRO", "OUTUBRO", "NOVEMBRO", "DEZEMBRO" };
+
+            Console.WriteLine($"Meses do ano { meses}");
+                      
+            var mesesOrdenados = meses.OrderBy(mes => mes);
+
+            Console.WriteLine($"Meses do ano ordenado: { mesesOrdenados}"); 
+
             Console.ReadLine();
         }
 
@@ -157,19 +164,12 @@ namespace ByteBank.SistemaAgencia
 
             Console.WriteLine(enderecoFormatado);
 
-
-
-
-
-
             string urlByteBank = "https://www.bybtebank.com.br/cambio";
 
             Console.WriteLine(urlByteBank.StartsWith("https://www.bybtebank.com.br"));
             Console.WriteLine(urlByteBank.EndsWith("/cambio."));
 
             Console.WriteLine(urlByteBank.Contains("ank."));
-
-
 
             Console.ReadLine();
 
