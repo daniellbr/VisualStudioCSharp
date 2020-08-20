@@ -14,7 +14,7 @@ namespace ByteBank.SistemaAgencia
         {
             var contas = new List<ContaCorrente>()
             {
-                new ContaCorrente (341,453443),
+                new ContaCorrente (341, 45343),
                 null,
                 new ContaCorrente (344, 43465),
                 null,
@@ -24,31 +24,40 @@ namespace ByteBank.SistemaAgencia
             };
 
 
+            var contasNaoNulas = contas.Where(conta => conta != null);
+
+            var contasOrdenadas = contasNaoNulas.OrderBy(conta => conta.NumeroConta);
+
+            foreach (var conta in contasOrdenadas)
+            {
+                Console.WriteLine($"Conta número {conta.NumeroConta}, Agência {conta.Agencia}");
+
+            }
+
+
             //contas.Sort(); --> Chama a implementação que criamos no IComparable
 
             // contas.Sort(new ComparadorContaCorrentePorAgencia()); --> Chama a função ICompare
-            
-            IOrderedEnumerable<ContaCorrente> contaOrdenada =
 
-                contas.OrderBy(conta => {
-                        if (conta == null)
-                        {
-                            return int.MaxValue;
-                        }
-                        return conta.NumeroConta;
-                    });
-
-            foreach (var conta in contaOrdenada)
-            {
-                if (conta != null)
-                {
-                    Console.WriteLine($"Agencia {conta.Agencia} e conta {conta.NumeroConta}");
-                } else
-                { 
-                    Console.WriteLine("Conta nula"); 
-                };
-
-            }
+            //IOrderedEnumerable<ContaCorrente> contaOrdenada =
+            //    contas.OrderBy(conta =>
+            //    {
+            //        if (conta == null)
+            //        {
+            //            return int.MaxValue;
+            //        }
+            //        return conta.NumeroConta;
+            //    });
+            //foreach (var conta in contaOrdenada)
+            //{
+            //    if (conta != null)
+            //    {
+            //        Console.WriteLine($"Agencia {conta.Agencia} e conta {conta.NumeroConta}");
+            //    } else
+            //    { 
+            //        Console.WriteLine("Conta nula"); 
+            //    };
+            //}
 
             var meses = new List<string>() { "JANEIRO", "FEVEREIRO", "MARCO", "ABRIL", "MARIO", "JUNHO", "JULHO", "AGOSTO", "SETEMBRO", "OUTUBRO", "NOVEMBRO", "DEZEMBRO" };
 
