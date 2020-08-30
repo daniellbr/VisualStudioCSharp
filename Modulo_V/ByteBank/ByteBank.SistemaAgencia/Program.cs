@@ -23,10 +23,11 @@ namespace ByteBank.SistemaAgencia
                 null
             };
 
-
-            var contasNaoNulas = contas.Where(conta => conta != null);
-
-            var contasOrdenadas = contasNaoNulas.OrderBy(conta => conta.NumeroConta);
+            //Validação de contas nulas e classificação em uma unica expressão
+            //É possivel devido tanto ao Where quanto o OrderBy retornarem u
+            var contasOrdenadas = contas.
+                Where(conta => conta !=null).
+                OrderBy(conta => conta.NumeroConta);
 
             foreach (var conta in contasOrdenadas)
             {
