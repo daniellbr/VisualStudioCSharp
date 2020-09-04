@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Text;
 
 namespace ByteBankImportacaoExportacao
@@ -31,8 +32,25 @@ namespace ByteBankImportacaoExportacao
             using (var escritor = new StreamWriter(fluxoDeArquivo, Encoding.UTF8))
             {
                 escritor.Write("3232,44334,443.43,Jose");
-            } 
+            }
         }
 
+        static void TestaArquivoGravado()
+        {
+            var caminhoNovoArquivo = "arquivoNovo.csv";
+            using (var fluxoDoArquivo = new FileStream(caminhoNovoArquivo, FileMode.Create))
+            using (var escritor = new StreamWriter(fluxoDoArquivo, Encoding.UTF8))
+            {
+                for (int i = 0; i < 1000; i++)
+                {
+                    escritor.WriteLine($"Linha {i}");
+
+                    escritor.Flush(); //grava o arquivo no modo fisico e não somente no buffer
+
+                    Console.WriteLine($"Linha {i} foi gravada no arquivo!");
+                    Console.ReadLine();
+                }
+            }
+        }
     }
 }

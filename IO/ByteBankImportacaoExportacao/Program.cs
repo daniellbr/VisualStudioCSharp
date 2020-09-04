@@ -1,9 +1,4 @@
-﻿//using ByteBankImportacaoExportacao.Modelos;
-//using System;
-//using System.IO; // IO = Input e Output
-//using System.Text;
-
-using ByteBankImportacaoExportacao.Modelos;
+﻿using ByteBankImportacaoExportacao.Modelos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,24 +11,13 @@ namespace ByteBankImportacaoExportacao
     {
         static void Main(string[] args)
         {
+            GravandoArquivoBinario();
+            LendoArquivoBinario();
             CriarCaminhoComWriter();
+            TestaArquivoGravado();
             //CriarArquivo();
 
             Console.ReadLine();
         }
     }
-
-//namespace ByteBankImportacaoExportacao 
-//{
-//    partial class program
-//    {
-//        private static void Main(string[] args)
-//        {
-//            CriarArquivo();
-//            Console.ReadLine();
-//        }
-//    }
-//}
- 
-
 }
