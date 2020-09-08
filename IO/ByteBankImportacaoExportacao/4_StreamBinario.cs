@@ -35,8 +35,6 @@ namespace ByteBankImportacaoExportacao
                 var nome = leitor.ReadString();
 
                 Console.WriteLine($" {agencia},{conta},{valor},{nome}");
-
-
             }
         }
     }
