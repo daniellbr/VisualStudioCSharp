@@ -10,75 +10,97 @@ namespace Alura.Loja.Testes.ConsoleApp
     {
         static void Main(string[] args)
         {
-            // GravarUsandoAdoNet();
-            // InserindoProdutoEntity();
-            //ConsultaProdutosEntity();
-            ExcluirProdutosEntity();
-            AtualizarProdutoEntity();
-        }
 
-        public static void AtualizarProdutoEntity()
-        {
-            //Vai incluir pelo menos um registro caso a tabela esteja vazia
-            InserindoProdutoEntity();
-            ConsultaProdutosEntity();
-
-            //Agora atualiza
-            using (var repoAtualiza = new IProdutoDAOEntity())
+            using (var contexto = new LojaContext())
             {
-                Produto primeiroProduto = repoAtualiza.Produtos().First();
-                primeiroProduto.Nome = "Super Chef Mais ou menos";
-                primeiroProduto.Preco = 12.65;
-                repoAtualiza.Atualizar(primeiroProduto);
-            }
-
-            ConsultaProdutosEntity();
-
-        }
-        public static void ExcluirProdutosEntity()
-        {
-            using (var repoExcluir = new IProdutoDAOEntity())
-            {
-                IList<Produto> produtos = repoExcluir.Produtos().ToList();
-
-                foreach (var item in produtos)
+                var produtos = contexto.Produtos.ToList();
+                foreach (var produto in produtos)
                 {
-                    repoExcluir.Remover(item);
+                    Console.WriteLine(produto);
                 }
-            }
-        }
 
-        public static void ConsultaProdutosEntity()
-        {
-            using (var repoConsulta = new IProdutoDAOEntity())
-            {
-                // Criei uma variavel do tipo IList e ela será do tipo Produto onde ela vai receber os dados da tabela
-                // Pois foi criada a variabel repoConsulta do tipo LojaContext essa variavel está retornando uma lista 
-                //da LojaContext
-                //IList<Produto> produtos = repoConsulta.Produtos.ToList();
-                var produtos = repoConsulta.Produtos();
-
-                Console.WriteLine("Foram encontrados {0} produto(s).", produtos.Count);
-
-                foreach (var item in produtos)
+                Console.WriteLine("-------------------");
+                foreach (var e in contexto.ChangeTracker.Entries()) 
                 {
-                    Console.WriteLine(item.Nome);
+                    Console.WriteLine(e.State);
                 }
-                Console.ReadLine();
-            }
-        }
-        private static void InserindoProdutoEntity()
-        {
-            Produto produtoIncluir = new Produto();
-            produtoIncluir.Nome = "Super Chef";
-            produtoIncluir.Categoria = "Livros";
-            produtoIncluir.Preco = 11.55;
 
-            using (var contexto = new IProdutoDAOEntity())//Uma convenção utilizada é o uso da palavra context para referenciar o contexto
-            {                                             //Essa classe possui o conceito de persistir todas as classes que necessitam
-                contexto.Adicionar(produtoIncluir);    //ser persistidas ela é generica servindo para Update, Insert, Select e Delete                               
+                var prod = produtos.Last();
+                prod.Nome = "Sera que é isso livre";
+
+                Console.WriteLine("-------------------");
+                foreach (var e in contexto.ChangeTracker.Entries())
+                {
+                    Console.WriteLine(e.State);
+                }
+
+                contexto.SaveChanges();
             }
+            Console.ReadLine();
         }
+
+        //public static void AtualizarProdutoEntity()
+        //{
+        //    //Vai incluir pelo menos um registro caso a tabela esteja vazia
+        //    InserindoProdutoEntity();
+        //    ConsultaProdutosEntity();
+
+        //    //Agora atualiza
+        //    using (var repoAtualiza = new IProdutoDAOEntity())
+        //    {
+        //        Produto primeiroProduto = repoAtualiza.Produtos().First();
+        //        primeiroProduto.Nome = "Super Chef Mais ou menos";
+        //        primeiroProduto.Preco = 12.65;
+        //        repoAtualiza.Atualizar(primeiroProduto);
+        //    }
+
+        //    ConsultaProdutosEntity();
+
+        //}
+        //public static void ExcluirProdutosEntity()
+        //{
+        //    using (var repoExcluir = new IProdutoDAOEntity())
+        //    {
+        //        IList<Produto> produtos = repoExcluir.Produtos().ToList();
+
+        //        foreach (var item in produtos)
+        //        {
+        //            repoExcluir.Remover(item);
+        //        }
+        //    }
+        //}
+
+        //public static void ConsultaProdutosEntity()
+        //{
+        //    using (var repoConsulta = new IProdutoDAOEntity())
+        //    {
+        //        // Criei uma variavel do tipo IList e ela será do tipo Produto onde ela vai receber os dados da tabela
+        //        // Pois foi criada a variabel repoConsulta do tipo LojaContext essa variavel está retornando uma lista 
+        //        //da LojaContext
+        //        //IList<Produto> produtos = repoConsulta.Produtos.ToList();
+        //        var produtos = repoConsulta.Produtos();
+
+        //        Console.WriteLine("Foram encontrados {0} produto(s).", produtos.Count);
+
+        //        foreach (var item in produtos)
+        //        {
+        //            Console.WriteLine(item.Nome);
+        //        }
+        //        Console.ReadLine();
+        //    }
+        //}
+        //private static void InserindoProdutoEntity()
+        //{
+        //    Produto produtoIncluir = new Produto();
+        //    produtoIncluir.Nome = "Master Chef";
+        //    produtoIncluir.Categoria = "Livros";
+        //    produtoIncluir.Preco = 11.55;
+
+        //    using (var contexto = new IProdutoDAOEntity())//Uma convenção utilizada é o uso da palavra context para referenciar o contexto
+        //    {                                             //Essa classe possui o conceito de persistir todas as classes que necessitam
+        //        contexto.Adicionar(produtoIncluir);    //ser persistidas ela é generica servindo para Update, Insert, Select e Delete                               
+        //    }
+        //}
 
 
         //private static void GravarUsandoAdoNet()
