@@ -24,13 +24,12 @@ namespace Alura.Loja.Testes.ConsoleApp
             ConsultaProdutosEntity();
 
             //Agora atualiza
-            using (var repoAtualiza = new LojaContext())
+            using (var repoAtualiza = new IProdutoDAOEntity())
             {
-                Produto primeiroProduto = repoAtualiza.Produtos.First();
+                Produto primeiroProduto = repoAtualiza.Produtos().First();
                 primeiroProduto.Nome = "Super Chef Mais ou menos";
                 primeiroProduto.Preco = 12.65;
-                repoAtualiza.Produtos.Update(primeiroProduto);
-                repoAtualiza.SaveChanges();
+                repoAtualiza.Atualizar(primeiroProduto);
             }
 
             ConsultaProdutosEntity();
@@ -38,27 +37,26 @@ namespace Alura.Loja.Testes.ConsoleApp
         }
         public static void ExcluirProdutosEntity()
         {
-            using (var repoExcluir = new LojaContext())
+            using (var repoExcluir = new IProdutoDAOEntity())
             {
-                IList<Produto> produtos = repoExcluir.Produtos.ToList();
+                IList<Produto> produtos = repoExcluir.Produtos().ToList();
 
                 foreach (var item in produtos)
                 {
-                    repoExcluir.Produtos.Remove(item);
+                    repoExcluir.Remover(item);
                 }
-                repoExcluir.SaveChanges();
             }
         }
 
         public static void ConsultaProdutosEntity()
         {
-            using (var repoConsulta = new LojaContext())
+            using (var repoConsulta = new IProdutoDAOEntity())
             {
                 // Criei uma variavel do tipo IList e ela será do tipo Produto onde ela vai receber os dados da tabela
                 // Pois foi criada a variabel repoConsulta do tipo LojaContext essa variavel está retornando uma lista 
                 //da LojaContext
                 //IList<Produto> produtos = repoConsulta.Produtos.ToList();
-                var produtos = repoConsulta.Produtos.ToList();
+                var produtos = repoConsulta.Produtos();
 
                 Console.WriteLine("Foram encontrados {0} produto(s).", produtos.Count);
 
@@ -76,10 +74,9 @@ namespace Alura.Loja.Testes.ConsoleApp
             produtoIncluir.Categoria = "Livros";
             produtoIncluir.Preco = 11.55;
 
-            using (var contexto = new LojaContext())//Uma convenção utilizada é o uso da palavra context para referenciar o contexto
-            {                                       //Essa classe possui o conceito de persistir todas as classes que necessitam
-                contexto.Produtos.Add(produtoIncluir);           //ser persistidas ela é generica servindo para Update, Insert, Select e Delete               
-                contexto.SaveChanges();
+            using (var contexto = new IProdutoDAOEntity())//Uma convenção utilizada é o uso da palavra context para referenciar o contexto
+            {                                             //Essa classe possui o conceito de persistir todas as classes que necessitam
+                contexto.Adicionar(produtoIncluir);    //ser persistidas ela é generica servindo para Update, Insert, Select e Delete                               
             }
         }
 
