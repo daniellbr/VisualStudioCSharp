@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,36 +12,62 @@ namespace Alura.Loja.Testes.ConsoleApp
 {
     class Program
     {
+       
+
         static void Main(string[] args)
         {
-
             using (var contexto = new LojaContext())
             {
+
+                var serviceProvider = contexto.GetInfrastructure<IServiceProvider>();
+                var loggerFactory = serviceProvider.GetService<ILoggerFactory>();
+                loggerFactory.AddProvider(SqlLoggerProvider.Create());
+                
                 var produtos = contexto.Produtos.ToList();
-                foreach (var produto in produtos)
-                {
-                    Console.WriteLine(produto);
-                }
+                               
+                ExibeEntries(contexto.ChangeTracker.Entries());
 
-                Console.WriteLine("-------------------");
-                foreach (var e in contexto.ChangeTracker.Entries()) 
+                var novoProduto = new Produto()
                 {
-                    Console.WriteLine(e.State);
-                }
+                    Nome = "Amaciante",
+                    Categoria = "limpeza",
+                    Preco = 2.44
+                };
+                contexto.Produtos.Add(novoProduto);
 
-                var prod = produtos.Last();
-                prod.Nome = "Sera que é isso livre";
+                ExibeEntries(contexto.ChangeTracker.Entries());
 
-                Console.WriteLine("-------------------");
-                foreach (var e in contexto.ChangeTracker.Entries())
-                {
-                    Console.WriteLine(e.State);
-                }
+                contexto.Produtos.Remove(novoProduto);
+
+                ExibeEntries(contexto.ChangeTracker.Entries());
+
+                var entry = contexto.Entry(novoProduto);
+                Console.WriteLine(entry.Entity.ToString() + " - " + entry.State);
+                                
+                //Existe um outro estado no o DETACHED ele não é mais monitorado pelo banco porém ele ainda existe no contexto
+
+                ExibeEntries(contexto.ChangeTracker.Entries());
 
                 contexto.SaveChanges();
+
+                ExibeEntries(contexto.ChangeTracker.Entries());
             }
             Console.ReadLine();
         }
+        private static void ExibeEntries(IEnumerable<EntityEntry> entries)
+        {
+            Console.WriteLine("==========================================");
+            foreach (var e in entries)
+            {
+                Console.WriteLine(e.Entity.ToString() + " - " + e.State);
+            }
+        }
+
+
+
+
+
+
 
         //public static void AtualizarProdutoEntity()
         //{
