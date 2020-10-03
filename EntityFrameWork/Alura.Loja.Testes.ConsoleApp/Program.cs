@@ -12,56 +12,110 @@ namespace Alura.Loja.Testes.ConsoleApp
 {
     class Program
     {
-       
-
         static void Main(string[] args)
         {
-            using (var contexto = new LojaContext())
-            {
 
-                var serviceProvider = contexto.GetInfrastructure<IServiceProvider>();
-                var loggerFactory = serviceProvider.GetService<ILoggerFactory>();
-                loggerFactory.AddProvider(SqlLoggerProvider.Create());
+
+        }   
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        //    using (var contexto = new LojaContext())
+        //    {
+
+        //        var serviceProvider = contexto.GetInfrastructure<IServiceProvider>();
+        //        var loggerFactory = serviceProvider.GetService<ILoggerFactory>();
+        //        loggerFactory.AddProvider(SqlLoggerProvider.Create());
                 
-                var produtos = contexto.Produtos.ToList();
+        //        var produtos = contexto.Produtos.ToList();
                                
-                ExibeEntries(contexto.ChangeTracker.Entries());
+        //        ExibeEntries(contexto.ChangeTracker.Entries());
 
-                var novoProduto = new Produto()
-                {
-                    Nome = "Amaciante",
-                    Categoria = "limpeza",
-                    Preco = 2.44
-                };
-                contexto.Produtos.Add(novoProduto);
+        //        var novoProduto = new Produto()
+        //        {
+        //            Nome = "Amaciante",
+        //            Categoria = "limpeza",
+        //            Preco = 2.44
+        //        };
+        //        contexto.Produtos.Update(novoProduto);
 
-                ExibeEntries(contexto.ChangeTracker.Entries());
+        //        ExibeEntries(contexto.ChangeTracker.Entries());
 
-                contexto.Produtos.Remove(novoProduto);
+        //        contexto.Produtos.Remove(novoProduto);
 
-                ExibeEntries(contexto.ChangeTracker.Entries());
+        //        ExibeEntries(contexto.ChangeTracker.Entries());
 
-                var entry = contexto.Entry(novoProduto);
-                Console.WriteLine(entry.Entity.ToString() + " - " + entry.State);
+        //        var entry = contexto.Entry(novoProduto);
+        //        Console.WriteLine(entry.Entity.ToString() + " - " + entry.State);
                                 
-                //Existe um outro estado no o DETACHED ele não é mais monitorado pelo banco porém ele ainda existe no contexto
+        //        //Existe um outro estado no o DETACHED ele não é mais monitorado pelo banco porém ele ainda existe no contexto
 
-                ExibeEntries(contexto.ChangeTracker.Entries());
+        //        ExibeEntries(contexto.ChangeTracker.Entries());
 
-                contexto.SaveChanges();
+        //        contexto.SaveChanges();
 
-                ExibeEntries(contexto.ChangeTracker.Entries());
-            }
-            Console.ReadLine();
-        }
-        private static void ExibeEntries(IEnumerable<EntityEntry> entries)
-        {
-            Console.WriteLine("==========================================");
-            foreach (var e in entries)
-            {
-                Console.WriteLine(e.Entity.ToString() + " - " + e.State);
-            }
-        }
+        //        ExibeEntries(contexto.ChangeTracker.Entries());
+        //    }
+        //    Console.ReadLine();
+        //}
+        //private static void ExibeEntries(IEnumerable<EntityEntry> entries)
+        //{
+        //    Console.WriteLine("==========================================");
+        //    foreach (var e in entries)
+        //    {
+        //        Console.WriteLine(e.Entity.ToString() + " - " + e.State);
+        //    }
+        //}
 
 
 
