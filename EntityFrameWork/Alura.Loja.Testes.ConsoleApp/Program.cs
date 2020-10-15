@@ -12,73 +12,69 @@ namespace Alura.Loja.Testes.ConsoleApp
 {
     class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
+            //var paoFrances = new Produto();
+            //paoFrances.Categoria = "Padaria";
+            //paoFrances.Nome = "Pão Frances";
+            //paoFrances.PrecoUnitario = 0.33;
+            //paoFrances.Unidade = "Unidade";
+
+            //var compra = new Compra();
+            //compra.Quantidade = 6;
+            //compra.Produto = paoFrances;
+            //compra.Preco = paoFrances.PrecoUnitario * compra.Quantidade;
+
+            var produto1 = new Produto() { Nome = "Batata", Categoria = "Vegetal", PrecoUnitario = 1.55, Unidade = "Kilo" };
+            var produto2 = new Produto() { Nome = "Alho", Categoria = "Vegetal", PrecoUnitario = 1.25, Unidade = "gramas" };
+            var produto3 = new Produto() { Nome = "Cebola", Categoria = "Vegetal", PrecoUnitario = 1.90, Unidade = "gramas" };
+
+            var promocaoPascoa = new Promocao();
+            promocaoPascoa.Descricao = "Pascoa Feliz";
+            promocaoPascoa.DataInicio = DateTime.Now;
+            promocaoPascoa.DataTermino = DateTime.Now.AddMonths(4);
 
 
-        }   
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+            promocaoPascoa.IncluiProduto(produto1);
+
+
+
+            using (var contexto = new LojaContext())
+            {
+                var serviceProvider = contexto.GetInfrastructure<IServiceProvider>();
+                var loggerFactory = serviceProvider.GetService<ILoggerFactory>();
+                loggerFactory.AddProvider(SqlLoggerProvider.Create());
+
+                contexto.Promocoes.Add(promocaoPascoa);
+                contexto.SaveChanges(); 
+
+                //contexto.Compras.Add(compra);
+                ExibeEntries(contexto.ChangeTracker.Entries());
+                contexto.SaveChanges();
+                Console.ReadLine();
+            }
+
+        }
+        private static void ExibeEntries(IEnumerable<EntityEntry> entries)
+        {
+            foreach (var e in entries)
+            {
+                Console.WriteLine($"{e.Entity.ToString()} {e.State}");
+            }
+        }
+
+
+
+
         //    using (var contexto = new LojaContext())
         //    {
 
         //        var serviceProvider = contexto.GetInfrastructure<IServiceProvider>();
         //        var loggerFactory = serviceProvider.GetService<ILoggerFactory>();
         //        loggerFactory.AddProvider(SqlLoggerProvider.Create());
-                
+
         //        var produtos = contexto.Produtos.ToList();
-                               
+
         //        ExibeEntries(contexto.ChangeTracker.Entries());
 
         //        var novoProduto = new Produto()
@@ -97,7 +93,7 @@ namespace Alura.Loja.Testes.ConsoleApp
 
         //        var entry = contexto.Entry(novoProduto);
         //        Console.WriteLine(entry.Entity.ToString() + " - " + entry.State);
-                                
+
         //        //Existe um outro estado no o DETACHED ele não é mais monitorado pelo banco porém ele ainda existe no contexto
 
         //        ExibeEntries(contexto.ChangeTracker.Entries());
