@@ -8,17 +8,16 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Alura.WebAPI.WebApp.Api
 {
-    public class LivrosController : Controller
+    public class ChuchuzinhoController : Controller
     {
         private readonly IRepository<Livro> _repo;
 
-        public LivrosController(IRepository<Livro> repository)
+        public ChuchuzinhoController(IRepository<Livro> repository)
         {
             _repo = repository;
         }
 
-        [HttpGet]
-        public IActionResult Recuperar(int id)
+        public IActionResult RetornaConsulta(int id)
         {
             var model = _repo.Find(id);
             if (model == null)
@@ -28,4 +27,5 @@ namespace Alura.WebAPI.WebApp.Api
             return Json(model.ToModel());
         }
     }
+
 }
