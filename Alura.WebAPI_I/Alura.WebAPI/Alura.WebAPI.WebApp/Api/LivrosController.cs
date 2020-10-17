@@ -8,7 +8,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Alura.WebAPI.WebApp.Api
 {
-    public class LivrosController : Controller
+    [ApiController]
+    [Route("[controller]")]
+    public class LivrosController : ControllerBase
     {
         private readonly IRepository<Livro> _repo;
 
@@ -17,7 +19,7 @@ namespace Alura.WebAPI.WebApp.Api
             _repo = repository;
         }
 
-        [HttpGet]
+        [HttpGet("{id}")]
         public IActionResult Recuperar(int id)
         {
             var model = _repo.Find(id);
@@ -25,11 +27,11 @@ namespace Alura.WebAPI.WebApp.Api
             {
                 return NotFound();
             }
-            return Json(model.ToModel());
+            return Ok(model.ToModel());
         }
 
         [HttpPost]
-        public IActionResult Incluir(LivroUpload model)
+        public IActionResult Incluir([FromBody]LivroUpload model)
         {
             if (ModelState.IsValid)
             {
@@ -37,12 +39,12 @@ namespace Alura.WebAPI.WebApp.Api
                 _repo.Incluir(livro);
                 var uri = Url.Action("Recuperar", new { id = livro.Id });
                 return Created(uri, livro); //Codigo status 201
-            }
+            }            
             return BadRequest(); //Erro 400 
         }
 
-        [HttpPost]
-        public IActionResult Alterar(LivroUpload model)
+        [HttpPut]
+        public IActionResult Alterar([FromBody] LivroUpload model)
         {
             if (ModelState.IsValid)
             {
@@ -60,7 +62,7 @@ namespace Alura.WebAPI.WebApp.Api
             return BadRequest();
         }
 
-        [HttpPost]
+        [HttpDelete("{id}")]
         public IActionResult Remover(int id)
         {
             var model = _repo.Find(id);
@@ -71,7 +73,5 @@ namespace Alura.WebAPI.WebApp.Api
             _repo.Excluir(model);
             return NoContent(); //Codigo Status 204
         }
-
-
     } 
 }
