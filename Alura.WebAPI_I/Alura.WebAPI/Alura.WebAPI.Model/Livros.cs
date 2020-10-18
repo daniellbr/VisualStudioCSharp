@@ -15,7 +15,7 @@ namespace Alura.ListaLeitura.Modelos
         public TipoListaLeitura Lista { get; set; }
     }
 
-    [XmlType("Livro")]
+    [XmlType("Livro")] //Notação para colocar no recurso "cabeçalho" do arquivo XML como "Livro" e não da classe LivroApi
     public class LivroApi
     {
         public int Id { get; set; }
