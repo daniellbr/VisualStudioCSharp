@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Alura.WebAPI.WebApp.Formatters;
 
 namespace Alura.ListaLeitura.WebApp
 {
@@ -43,7 +44,10 @@ namespace Alura.ListaLeitura.WebApp
 
             services.AddTransient<IRepository<Livro>, RepositorioBaseEF<Livro>>();
 
-            services.AddMvc().AddXmlDataContractSerializerFormatters(); //Alem de Json ele irá entregar XML também
+            services.AddMvc(options =>
+            {
+                options.OutputFormatters.Add(new LivroCsvFormatter()); //sobrecarga no metodo para configurar a opcao para criar uma lista nova de tipo de formatação
+            }).AddXmlDataContractSerializerFormatters(); //Alem de Json ele irá entregar XML também
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
