@@ -66,7 +66,7 @@ namespace Alura.ListaLeitura.WebApp
                                                                 .GetBytes("alura-webapi-authentication-valid")), //chave para validar no Emitente ou o dono da informação
                     ClockSkew = TimeSpan.FromMinutes(5), //tempo para expirar esta chave em caso de não utilização
                     ValidIssuer = "Alura.WebApp", //Aplicação que pode acessar a "aplicação"
-                    ValidAudience = "Postaman",
+                    ValidAudience = "Postman",
                 };
             });
         }
