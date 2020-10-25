@@ -5,7 +5,7 @@ using System;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Alura.WebAPI.WebApp.Formatters
+namespace Alura.ListaLeitura.Api.Formatters
 {
     public class LivroCsvFormatter : TextOutputFormatter
     {
@@ -18,7 +18,7 @@ namespace Alura.WebAPI.WebApp.Formatters
             SupportedEncodings.Add(Encoding.UTF8);
         }
 
-        protected override bool CanWriteType(Type type) //metodo sobrescrito para somente aceitar objeto do tipo LivroApi
+        protected override bool CanWriteType(Type type) //metodo sobrescrito para aceitar o objeto do tipo LivroApi
         {
             return type == typeof(LivroApi);
         }
@@ -30,13 +30,11 @@ namespace Alura.WebAPI.WebApp.Formatters
             if (context.Object is LivroApi)
             {
                 var livro = context.Object as LivroApi;
-
                 livroEmCsv = $"{livro.Titulo};{livro.Subtitulo};{livro.Autor};{livro.Lista}";
             }
-
             using (var escritor = context.WriterFactory(context.HttpContext.Response.Body, selectedEncoding))
             {
-               return escritor.WriteAsync(livroEmCsv);
+                return escritor.WriteAsync(livroEmCsv); 
             }
         }
     }
