@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30225.117
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiDoZero", "ApiDoZero\ApiDoZero.csproj", "{B32081DE-0770-4EE9-8B82-FCDEBA59375A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B32081DE-0770-4EE9-8B82-FCDEBA59375A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B32081DE-0770-4EE9-8B82-FCDEBA59375A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B32081DE-0770-4EE9-8B82-FCDEBA59375A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B32081DE-0770-4EE9-8B82-FCDEBA59375A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {81785B24-6206-48E9-8362-042E949B215C}
+	EndGlobalSection
+EndGlobal
