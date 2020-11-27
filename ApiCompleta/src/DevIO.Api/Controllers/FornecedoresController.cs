@@ -25,10 +25,11 @@ namespace DevIO.Api.Controllers
             _mapper = mapper; //Injetando no construtor a interface do AutoMapper
         }
 
+        [HttpGet]
         public async Task<ActionResult<IEnumerable<FornecedorViewModel>>> ObterTodos()
         {
-            var fornecedor = await  _fornecedoRepository.ObterTodos();// Da maneira como está a variavel fornecedor recebe uma entidade de Fornecedor e não a FornecedorViewModel. Essa pratica não é recomentada então temos que fazer o Mapper da Entidade para ViewModel
-            //var fornecedor = _mapper.Map<IEnumerable<FornecedorViewModel>>(await _fornecedoRepository.ObterTodos());
+            //var fornecedor = await  _fornecedoRepository.ObterTodos();// Da maneira como está a variavel fornecedor recebe uma entidade de Fornecedor e não a FornecedorViewModel. Essa pratica não é recomentada então temos que fazer o Mapper da Entidade para ViewModel
+            var fornecedor = _mapper.Map<IEnumerable<FornecedorViewModel>>(await _fornecedoRepository.ObterTodos());
 
             return Ok(fornecedor);
         }

@@ -1,9 +1,9 @@
 using AutoMapper;
-using DevIO.Business.Intefaces;
+using DevIO.Api.Configuration;
 using DevIO.Data.Context;
-using DevIO.Data.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,9 +32,14 @@ namespace DevIO.Api
 
             services.AddControllers();
 
-            services.AddScoped<MeuDbContext>();
+            services.ResolveDependencies();
 
-            services.AddScoped<IFornecedorRepository, FornecedorRepository>();
+            services.Configure<ApiBehaviorOptions>(options =>
+            {
+
+                options.SuppressModelStateInvalidFilter = true;
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
