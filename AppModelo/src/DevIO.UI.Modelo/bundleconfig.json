@@ -1,0 +1,16 @@
+[
+  {
+    "outputFileName": "wwwwrot/css/modelo_bundle.min.css",
+    "inputFiles": [
+      "wwwwrot/lib/bootstrap/css/bootstrap.css",
+      "wwwwrot/css/modelo.css"      
+    ]
+  },
+  {
+    "outputFileName": "wwwwrot/js/modelo_bundle.min.css",
+    "inputFiles": [
+      "wwwwrot/lib/jquery/jquery.js",
+      "wwwwrot/js/modelo.js"      
+    ]
+  }
+]
