@@ -1,1 +1,7 @@
-﻿Olá!
+﻿@using DevIO.UI.Modelo.Data;
+
+@inject IPedidoRepository  PedidoRepository
+
+Olá!
+
+@PedidoRepository.ObterPedido().Id;
