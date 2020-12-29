@@ -16,6 +16,7 @@ namespace AspNetCoreIdentity.Controllers
         [AllowAnonymous]
         public IActionResult Index()
         {
+            throw new Exception("Erro em nossos computadores");
             return View();
         }
 
@@ -61,11 +62,36 @@ namespace AspNetCoreIdentity.Controllers
         {
             return View("SecretClaimGravar");
         }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+                
+        [Route("erro/{id:length(3,3)}")]
+        public IActionResult Error(int id)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            var modelErro = new ErrorViewModel();
+
+            if (id == 500)
+            {
+                modelErro.Mensagem = "Ocorreu um erro! Tente novamente";
+                modelErro.Titulo = "Ocorreu um erro";
+                modelErro.ErroCode = id;
+            }
+            else if (id == 404)
+            {
+                modelErro.Mensagem = "A pagina que vc está procurando não existe ";
+                modelErro.Titulo = "Pagina não encontrada";
+                modelErro.ErroCode = id;
+            }
+            else if (id == 403)
+            {
+                modelErro.Mensagem = "Voce não tem permissão para fazer isso";
+                modelErro.Titulo = "Acesso negado";
+                modelErro.ErroCode = id;
+            }
+            else
+            {
+                return StatusCode(404);
+            }
+
+            return View("Error", modelErro);
         }
     }
 }
