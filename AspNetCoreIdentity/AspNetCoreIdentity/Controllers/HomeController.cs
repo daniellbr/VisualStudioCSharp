@@ -1,22 +1,27 @@
 ﻿using AspNetCoreIdentity.Extensions;
 using AspNetCoreIdentity.Models;
+using KissLog;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace AspNetCoreIdentity.Controllers
 {
     [Authorize]
     public class HomeController : Controller
     {
+        private readonly ILogger _logger;
+
+        public HomeController(ILogger logger)
+        {
+            _logger = logger;
+        }
+
         [AllowAnonymous]
         public IActionResult Index()
         {
-            throw new Exception("Erro em nossos computadores");
+            _logger.Debug("Será que deu certo?");
+            //throw new Exception("Erro em nossos computadores");
             return View();
         }
 

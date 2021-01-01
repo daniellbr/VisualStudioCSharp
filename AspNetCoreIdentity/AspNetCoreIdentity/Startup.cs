@@ -1,15 +1,24 @@
 ﻿using AspNetCoreIdentity.Config;
+using KissLog;
+using KissLog.AspNetCore;
+using KissLog.CloudListeners.Auth;
+using KissLog.CloudListeners.RequestLogsListener;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Diagnostics;
+using System.Text;
 
 namespace AspNetCoreIdentity
 {
     public class Startup
     {
         public IConfiguration Configuration { get; }
+
+        public IOptionsBuilder options { get; }
 
         public Startup(IHostingEnvironment hostingEnvironment)
         {
@@ -50,6 +59,12 @@ namespace AspNetCoreIdentity
                 app.UseHsts();
             }
 
+            app.UseKissLogMiddleware();
+
+            //app.UseKissLogMiddleware(options => {
+            //   new LogConfig().ConfigureKissLog(options, Configuration);
+            //});           
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
@@ -61,6 +76,11 @@ namespace AspNetCoreIdentity
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-        }
+
+            //app.UseKissLogMiddleware(options => {
+            //LogConfig.RegisterKissLogListeners(options, Configuration);
+            LogConfig.RegisterKissLogListeners(Configuration);
+           // });            
+        }      
     }
 }
