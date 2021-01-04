@@ -1,4 +1,5 @@
 ﻿using AspNetCoreIdentity.Config;
+using AspNetCoreIdentity.Extensions;
 using KissLog;
 using KissLog.AspNetCore;
 using KissLog.CloudListeners.Auth;
@@ -42,7 +43,10 @@ namespace AspNetCoreIdentity
             services.AddIdentityConfig(Configuration);
             services.ResolveDependencies();
             services.AddAuthorizationConfig();
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc(options =>
+            {
+                options.Filters.Add(typeof(AuditoriaFilter));
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
