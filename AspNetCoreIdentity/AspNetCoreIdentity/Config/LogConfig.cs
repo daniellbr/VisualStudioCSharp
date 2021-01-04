@@ -33,34 +33,31 @@ namespace AspNetCoreIdentity.Config
                 Debug.WriteLine(message);
             };
 
-            //RegisterKissLogListeners(options, configuration);
-            RegisterKissLogListeners(configuration);
+            RegisterKissLogListeners(options, configuration);
+            //RegisterKissLogListeners(configuration);
         }
 
 
-        public static void RegisterKissLogListeners(IConfiguration configuration)
-        {
-            KissLogConfiguration.Listeners.Add(new RequestLogsApiListener(new Application(
-                  configuration["KissLog.OrganizationId: 15cc07da-9159-4bc6-b5ed-84992261c33c"],
-                  configuration["KissLog.ApplicationId: 43239184-5f2c-4341-8a29-36974095e69c"]
-            ))
-            {
-                ApiUrl = configuration["KissLog.ApiUrl"]    //  "https://api.kisslog.net"
-            });
-        }
-
-
-        //public static void RegisterKissLogListeners(IOptionsBuilder options, IConfiguration configuration)
+        //public static void RegisterKissLogListeners(IConfiguration configuration)
         //{
-        //    options.Listeners.Add(new RequestLogsApiListener(new Application(
+        //    KissLogConfiguration.Listeners.Add(new RequestLogsApiListener(new Application(
         //          configuration["KissLog.OrganizationId: 15cc07da-9159-4bc6-b5ed-84992261c33c"],
         //          configuration["KissLog.ApplicationId: 43239184-5f2c-4341-8a29-36974095e69c"]
-        //    //configuration["KissLog.OrganizationId"],    //  "15cc07da-9159-4bc6-b5ed-84992261c33c"
-        //    //configuration["KissLog.ApplicationId"])     //  "43239184-5f2c-4341-8a29-36974095e69c"
         //    ))
         //    {
         //        ApiUrl = configuration["KissLog.ApiUrl"]    //  "https://api.kisslog.net"
         //    });
         //}
+
+        public static void RegisterKissLogListeners(IOptionsBuilder options, IConfiguration configuration)
+        {
+            options.Listeners.Add(new RequestLogsApiListener(new Application(
+            configuration["KissLog.OrganizationId"],    //  "15cc07da-9159-4bc6-b5ed-84992261c33c"
+            configuration["KissLog.ApplicationId"])     //  "43239184-5f2c-4341-8a29-36974095e69c"
+            )
+            {
+                ApiUrl = configuration["KissLog.ApiUrl"]    //  "https://api.kisslog.net"
+            });
+        }
     }
 }

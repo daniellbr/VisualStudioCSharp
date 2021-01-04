@@ -37,7 +37,6 @@ namespace AspNetCoreIdentity
             
         }
 
-
         public void ConfigureServices(IServiceCollection services)       
         {
             services.AddIdentityConfig(Configuration);
@@ -57,30 +56,25 @@ namespace AspNetCoreIdentity
                 app.UseExceptionHandler("/erro/500");
                 app.UseStatusCodePagesWithRedirects("/erro/{0}");
                 app.UseHsts();
-            }
+            }            
 
-            app.UseKissLogMiddleware();
-
-            //app.UseKissLogMiddleware(options => {
-            //   new LogConfig().ConfigureKissLog(options, Configuration);
-            //});           
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseAuthentication();
 
+            app.UseKissLogMiddleware(options =>
+            {
+                new LogConfig().ConfigureKissLog(options, Configuration);
+            });
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
-            });
-
-            //app.UseKissLogMiddleware(options => {
-            //LogConfig.RegisterKissLogListeners(options, Configuration);
-            LogConfig.RegisterKissLogListeners(Configuration);
-           // });            
+            });          
         }      
     }
 }
