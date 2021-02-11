@@ -6,14 +6,20 @@ using DevIO.Business.Models;
 
 namespace DevIO.Business.Interfaces
 {
-    public interface IRepository<TEntity> : IDisposable where TEntity : Entity
+    public interface IRepository<TGenEntity> : IDisposable where TGenEntity : Entity
     {
-        Task Adicionar(TEntity entity);
-        Task<TEntity> ObterPorId(Guid id);
-        Task<List<TEntity>> ObterTodos();
-        Task Atualizar(TEntity entity);
+        Task Adicionar(TGenEntity entity);
+
+        Task<TGenEntity> ObterPorId(Guid id);
+
+        Task<List<TGenEntity>> ObterTodos();
+
+        Task Atualizar(TGenEntity entity);
+
         Task Remover(Guid id);
-        Task<IEnumerable<TEntity>> Buscar(Expression<Func<TEntity, bool>> predicate);
+
+        Task<IEnumerable<TGenEntity>> Buscar(Expression<Func<TGenEntity, bool>> predicate);
+
         Task<int> SaveChanges();
     }
 }
