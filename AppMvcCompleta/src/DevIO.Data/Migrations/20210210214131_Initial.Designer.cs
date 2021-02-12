@@ -134,8 +134,8 @@ namespace DevIO.Data.Migrations
                         .WithOne("Endereco")
                         .HasForeignKey("DevIO.Business.Models.Endereco", "FornecedorId")
                         .IsRequired();
-
-                    b.Navigation("Fornecedor");
+                 //TODO
+                 //   b.Navigation("Fornecedor");
                 });
 
             modelBuilder.Entity("DevIO.Business.Models.Produto", b =>
@@ -144,15 +144,16 @@ namespace DevIO.Data.Migrations
                         .WithMany("Produtos")
                         .HasForeignKey("FornecedorId")
                         .IsRequired();
-
-                    b.Navigation("Fornecedor");
+                    //TODO
+                    //     b.Navigation("Fornecedor");
                 });
 
             modelBuilder.Entity("DevIO.Business.Models.Fornecedor", b =>
                 {
-                    b.Navigation("Endereco");
+                    //TODO
+                    //   b.Navigation("Endereco");
 
-                    b.Navigation("Produtos");
+                    // b.Navigation("Produtos");
                 });
 #pragma warning restore 612, 618
         }
