@@ -12,6 +12,6 @@ namespace DevIO.App.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
-        }        
+        }                
     }
 }

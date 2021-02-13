@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DevIO.App.Controllers
 {
-    public class FornecedoresController : Controller
+    public class FornecedoresController : BaseController
     {
         private readonly IFornecedorRepository _fornecedorRepository;
         private readonly IMapper _mapper;
@@ -49,7 +49,7 @@ namespace DevIO.App.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(FornecedorViewModel fornecedorViewModel)
         {
-            if (!ModelState.IsValid) View(fornecedorViewModel);
+            if (!ModelState.IsValid) return View(fornecedorViewModel);
 
             var fornecedor = _mapper.Map<Fornecedor>(fornecedorViewModel);
             await _fornecedorRepository.Adicionar(fornecedor);
