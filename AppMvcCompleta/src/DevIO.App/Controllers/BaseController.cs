@@ -4,6 +4,6 @@ namespace DevIO.App.Controllers
 {
     public class BaseController : Controller
     {
-
+     
     }
 }

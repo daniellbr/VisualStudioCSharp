@@ -4,6 +4,7 @@ using DevIO.Business.Interfaces;
 using DevIO.Business.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,6 +17,7 @@ namespace DevIO.App.Controllers
         private readonly IProdutoRepository _produtosrepository;
         private readonly IFornecedorRepository _fornecedorRepository;
         private readonly IMapper _mapper;
+
         public ProdutosController(IProdutoRepository produtoRepository,
                                   IFornecedorRepository fornecedorRepository,
                                   IMapper mapper)
@@ -59,13 +61,9 @@ namespace DevIO.App.Controllers
 
             if (!ModelState.IsValid) return View(produtoViewModel);
 
-            var imgPrefixo = Guid.NewGuid() + "_";
-            if (!await UploadImagem(produtoViewModel.ImagemUpload, imgPrefixo))
-            {
-                return View(produtoViewModel);
-            }
-
-            produtoViewModel.Imagem = imgPrefixo + produtoViewModel.ImagemUpload.FileName;
+            produtoViewModel.Imagem = 
+                    await ImagemPrefixo(produtoViewModel.ImagemUpload, produtoViewModel) +
+                    produtoViewModel.ImagemUpload.FileName;
 
             await _produtosrepository.Adicionar(_mapper.Map<Produto>(produtoViewModel));
 
@@ -88,14 +86,45 @@ namespace DevIO.App.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, ProdutoViewModel produtoViewModel)
         {
-            if (id != produtoViewModel.Id) return NotFound();            
+            try
+            {
+                if (id != produtoViewModel.Id) return NotFound();
 
-            if (!ModelState.IsValid) return View(produtoViewModel);            
+                var produtoAtualizando = await ObterProdutoFornecedor(id);
+                produtoViewModel.Fornecedor = produtoAtualizando.Fornecedor;
+                produtoViewModel.Imagem = produtoAtualizando.Imagem;
 
-            await _produtosrepository.Atualizar(_mapper.Map<Produto>(produtoViewModel));
+                if (!ModelState.IsValid) return View(produtoViewModel);
+
+                if (produtoViewModel.ImagemUpload != null)
+                {
+                    produtoAtualizando.Imagem =
+                        await ImagemPrefixo(produtoViewModel.ImagemUpload, produtoViewModel) +
+                        produtoViewModel.ImagemUpload.FileName;
+                }
+
+                produtoAtualizando.Nome = produtoViewModel.Nome;
+                produtoAtualizando.Descricao = produtoViewModel.Descricao;
+                produtoAtualizando.Valor = produtoViewModel.Valor;
+                produtoAtualizando.Ativo = produtoViewModel.Ativo;
+
+                var produto = _mapper.Map<Produto>(produtoAtualizando);
+
+                DestachLocal(i => i.Id == entity.Id);
+
+                await _produtosrepository.Atualizar(produto);
+
+
+                return RedirectToAction("Index");
+            }
+            catch (Exception )
+            {
+
+                throw;
+            }
             
-            return RedirectToAction("Index");            
         }
+
 
         // GET: Produtos/Delete/5
         public async Task<IActionResult> Delete(Guid id)
@@ -152,5 +181,23 @@ namespace DevIO.App.Controllers
             }
             return true;
         }
+        private async Task<string> ImagemPrefixo(IFormFile imagemUpload, ProdutoViewModel produtoViewModel)
+        {
+            var imgPrefixo = Guid.NewGuid() + "_";
+
+            await UploadImagem(produtoViewModel.ImagemUpload, imgPrefixo);
+            
+            return imgPrefixo;
+        }
+
+        //public virtual void DestachLocal(Func<TGenEntity, bool> predicate)
+        //{
+        //    var local = meuDbContext.Set<TGenEntity>().Local.Where(predicate).FirstOrDefault();
+
+        //    if (!local.IsNull())
+        //    {
+        //        meuDbContext.Entry(local).State = EntityState.Detached;
+        //    }
+        //}
     }
 }

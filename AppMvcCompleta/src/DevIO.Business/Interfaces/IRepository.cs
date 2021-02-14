@@ -20,6 +20,6 @@ namespace DevIO.Business.Interfaces
 
         Task<IEnumerable<TGenEntity>> Buscar(Expression<Func<TGenEntity, bool>> predicate);
 
-        Task<int> SaveChanges();
+        Task<int> SaveChanges();       
     }
 }

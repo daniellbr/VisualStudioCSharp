@@ -12,46 +12,46 @@ namespace DevIO.Data.Repository
 {
     public abstract class Repository<TGenEntity> : IRepository<TGenEntity> where TGenEntity : Entity, new()
     {
-        protected readonly MeuDbContext meuDbContext;
-        protected readonly DbSet<TGenEntity> dbSet;
+        public readonly MeuDbContext meuDbContext;
+        //protected readonly meuDbContext.Set<TGenEntity>()<TGenEntity> meuDbContext.Set<TGenEntity>();
 
         public Repository(MeuDbContext context)
         {
             meuDbContext = context;
-            dbSet = context.Set<TGenEntity>();
+            //meuDbContext.Set<TGenEntity>() = context.Set<TGenEntity>();
         }
 
         public async Task<IEnumerable<TGenEntity>> Buscar(System.Linq.Expressions.Expression<Func<TGenEntity, bool>> predicate)
         {
-            return await dbSet.AsNoTracking().Where(predicate).ToListAsync();
+            return await meuDbContext.Set<TGenEntity>().AsNoTracking().Where(predicate).ToListAsync();
         }
 
         public virtual async Task<TGenEntity> ObterPorId(Guid id)
         {
-            return await dbSet.FindAsync();
+            return await meuDbContext.Set<TGenEntity>().FindAsync();
         }
 
         public virtual async Task<List<TGenEntity>> ObterTodos()
         {
-            return await dbSet.ToListAsync();
+            return await meuDbContext.Set<TGenEntity>().ToListAsync();
         }
 
         public virtual async Task Adicionar(TGenEntity entity)
         {
-            dbSet.Add(entity);
+            meuDbContext.Set<TGenEntity>().Add(entity);
             await SaveChanges();
         }
 
         public virtual async Task Atualizar(TGenEntity entity)
         {
-            dbSet.Update(entity);
+            meuDbContext.Set<TGenEntity>().Update(entity);
             await SaveChanges();
         }
 
         public virtual async Task Remover(Guid id)
         {
             //Desta maneira não é necessário efetuar um acesso ao banco, é criado um tipo generico somente como ID já que todo obj é do tipo Entity
-            dbSet.Remove(new TGenEntity { Id = id});
+            meuDbContext.Set<TGenEntity>().Remove(new TGenEntity { Id = id});
             await SaveChanges();
         }
 
@@ -59,7 +59,6 @@ namespace DevIO.Data.Repository
         {
             return await meuDbContext.SaveChangesAsync(); 
         }
-
         public void Dispose()
         {
             meuDbContext?.Dispose();
