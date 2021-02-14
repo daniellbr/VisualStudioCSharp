@@ -13,6 +13,25 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="wwwroot\lib\font-awesome\css\all.min.css" />
+    <Content Include="wwwroot\lib\font-awesome\webfonts\fa-brands-400.eot" />
+    <Content Include="wwwroot\lib\font-awesome\webfonts\fa-brands-400.svg" />
+    <Content Include="wwwroot\lib\font-awesome\webfonts\fa-brands-400.ttf" />
+    <Content Include="wwwroot\lib\font-awesome\webfonts\fa-brands-400.woff" />
+    <Content Include="wwwroot\lib\font-awesome\webfonts\fa-brands-400.woff2" />
+    <Content Include="wwwroot\lib\font-awesome\webfonts\fa-regular-400.eot" />
+    <Content Include="wwwroot\lib\font-awesome\webfonts\fa-regular-400.svg" />
+    <Content Include="wwwroot\lib\font-awesome\webfonts\fa-regular-400.ttf" />
+    <Content Include="wwwroot\lib\font-awesome\webfonts\fa-regular-400.woff" />
+    <Content Include="wwwroot\lib\font-awesome\webfonts\fa-regular-400.woff2" />
+    <Content Include="wwwroot\lib\font-awesome\webfonts\fa-solid-900.eot" />
+    <Content Include="wwwroot\lib\font-awesome\webfonts\fa-solid-900.svg" />
+    <Content Include="wwwroot\lib\font-awesome\webfonts\fa-solid-900.ttf" />
+    <Content Include="wwwroot\lib\font-awesome\webfonts\fa-solid-900.woff" />
+    <Content Include="wwwroot\lib\font-awesome\webfonts\fa-solid-900.woff2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.10" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.10" />
