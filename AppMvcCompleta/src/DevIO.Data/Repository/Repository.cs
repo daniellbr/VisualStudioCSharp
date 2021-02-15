@@ -12,13 +12,12 @@ namespace DevIO.Data.Repository
 {
     public abstract class Repository<TGenEntity> : IRepository<TGenEntity> where TGenEntity : Entity, new()
     {
-        public readonly MeuDbContext meuDbContext;
-        //protected readonly meuDbContext.Set<TGenEntity>()<TGenEntity> meuDbContext.Set<TGenEntity>();
+        protected readonly MeuDbContext meuDbContext;        
 
         public Repository(MeuDbContext context)
         {
             meuDbContext = context;
-            //meuDbContext.Set<TGenEntity>() = context.Set<TGenEntity>();
+            
         }
 
         public async Task<IEnumerable<TGenEntity>> Buscar(System.Linq.Expressions.Expression<Func<TGenEntity, bool>> predicate)
@@ -59,6 +58,7 @@ namespace DevIO.Data.Repository
         {
             return await meuDbContext.SaveChangesAsync(); 
         }
+
         public void Dispose()
         {
             meuDbContext?.Dispose();

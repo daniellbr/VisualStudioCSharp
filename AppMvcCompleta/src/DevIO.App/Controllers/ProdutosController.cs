@@ -29,7 +29,7 @@ namespace DevIO.App.Controllers
 
         // GET: Produtos
         public async Task<IActionResult> Index()
-        {            
+        {
             return View(_mapper.Map<IEnumerable<ProdutoViewModel>>
                        (await _produtosrepository.ObterProdutosFornecedores()));
         }
@@ -61,7 +61,7 @@ namespace DevIO.App.Controllers
 
             if (!ModelState.IsValid) return View(produtoViewModel);
 
-            produtoViewModel.Imagem = 
+            produtoViewModel.Imagem =
                     await ImagemPrefixo(produtoViewModel.ImagemUpload, produtoViewModel) +
                     produtoViewModel.ImagemUpload.FileName;
 
@@ -76,8 +76,8 @@ namespace DevIO.App.Controllers
         {
             var produtoViewModel = await ObterProdutoFornecedor(id);
 
-            if (produtoViewModel == null) return NotFound();            
-            
+            if (produtoViewModel == null) return NotFound();
+
             return View(produtoViewModel);
         }
 
@@ -86,43 +86,31 @@ namespace DevIO.App.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, ProdutoViewModel produtoViewModel)
         {
-            try
+            if (id != produtoViewModel.Id) return NotFound();
+
+            var produtoAtualizando = await ObterProduto(id);
+            produtoViewModel.Fornecedor = produtoAtualizando.Fornecedor;
+            produtoViewModel.Imagem = produtoAtualizando.Imagem;
+
+            if (!ModelState.IsValid) return View(produtoViewModel);
+
+            if (produtoViewModel.ImagemUpload != null)
             {
-                if (id != produtoViewModel.Id) return NotFound();
-
-                var produtoAtualizando = await ObterProdutoFornecedor(id);
-                produtoViewModel.Fornecedor = produtoAtualizando.Fornecedor;
-                produtoViewModel.Imagem = produtoAtualizando.Imagem;
-
-                if (!ModelState.IsValid) return View(produtoViewModel);
-
-                if (produtoViewModel.ImagemUpload != null)
-                {
-                    produtoAtualizando.Imagem =
-                        await ImagemPrefixo(produtoViewModel.ImagemUpload, produtoViewModel) +
-                        produtoViewModel.ImagemUpload.FileName;
-                }
-
-                produtoAtualizando.Nome = produtoViewModel.Nome;
-                produtoAtualizando.Descricao = produtoViewModel.Descricao;
-                produtoAtualizando.Valor = produtoViewModel.Valor;
-                produtoAtualizando.Ativo = produtoViewModel.Ativo;
-
-                var produto = _mapper.Map<Produto>(produtoAtualizando);
-
-                DestachLocal(i => i.Id == entity.Id);
-
-                await _produtosrepository.Atualizar(produto);
-
-
-                return RedirectToAction("Index");
+                produtoAtualizando.Imagem =
+                    await ImagemPrefixo(produtoViewModel.ImagemUpload, produtoViewModel) +
+                    produtoViewModel.ImagemUpload.FileName;
             }
-            catch (Exception )
-            {
 
-                throw;
-            }
-            
+            produtoAtualizando.Nome = produtoViewModel.Nome;
+            produtoAtualizando.Descricao = produtoViewModel.Descricao;
+            produtoAtualizando.Valor = produtoViewModel.Valor;
+            produtoAtualizando.Ativo = produtoViewModel.Ativo;
+
+            var produto = _mapper.Map<Produto>(produtoAtualizando);
+
+            await _produtosrepository.Atualizar(produto);
+
+            return RedirectToAction("Index");
         }
 
 
@@ -146,19 +134,25 @@ namespace DevIO.App.Controllers
             if (produto == null) return NotFound();
 
             await _produtosrepository.Remover(id);
-            
+
             return RedirectToAction("Index");
         }
 
+        private async Task<ProdutoViewModel> ObterProduto(Guid id)
+        {
+            var produto = (_mapper.Map<ProdutoViewModel>(await _produtosrepository.ObterProdutoFornecedor(id)));            
+
+            return produto;
+        }
         private async Task<ProdutoViewModel> ObterProdutoFornecedor(Guid id)
         {
-            var produto = (_mapper.Map<ProdutoViewModel> (await _produtosrepository.ObterProdutoFornecedor(id)));
-            produto.Fornecedores = (_mapper.Map<IEnumerable<FornecedorViewModel>> (await _fornecedorRepository.ObterTodos()));
+            var produto = (_mapper.Map<ProdutoViewModel>(await _produtosrepository.ObterProdutoFornecedor(id)));
+            produto.Fornecedores = (_mapper.Map<IEnumerable<FornecedorViewModel>>(await _fornecedorRepository.ObterTodos()));
 
             return produto;
         }
         private async Task<ProdutoViewModel> PopularFornecedores(ProdutoViewModel produto)
-        {            
+        {
             produto.Fornecedores = (_mapper.Map<IEnumerable<FornecedorViewModel>>(await _fornecedorRepository.ObterTodos()));
 
             return produto;
@@ -186,18 +180,8 @@ namespace DevIO.App.Controllers
             var imgPrefixo = Guid.NewGuid() + "_";
 
             await UploadImagem(produtoViewModel.ImagemUpload, imgPrefixo);
-            
+
             return imgPrefixo;
         }
-
-        //public virtual void DestachLocal(Func<TGenEntity, bool> predicate)
-        //{
-        //    var local = meuDbContext.Set<TGenEntity>().Local.Where(predicate).FirstOrDefault();
-
-        //    if (!local.IsNull())
-        //    {
-        //        meuDbContext.Entry(local).State = EntityState.Detached;
-        //    }
-        //}
     }
 }
