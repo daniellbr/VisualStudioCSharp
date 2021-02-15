@@ -113,7 +113,6 @@ namespace DevIO.App.Controllers
             return RedirectToAction("Index");
         }
 
-
         // GET: Produtos/Delete/5
         public async Task<IActionResult> Delete(Guid id)
         {
@@ -144,6 +143,7 @@ namespace DevIO.App.Controllers
 
             return produto;
         }
+
         private async Task<ProdutoViewModel> ObterProdutoFornecedor(Guid id)
         {
             var produto = (_mapper.Map<ProdutoViewModel>(await _produtosrepository.ObterProdutoFornecedor(id)));
@@ -151,12 +151,14 @@ namespace DevIO.App.Controllers
 
             return produto;
         }
+
         private async Task<ProdutoViewModel> PopularFornecedores(ProdutoViewModel produto)
         {
             produto.Fornecedores = (_mapper.Map<IEnumerable<FornecedorViewModel>>(await _fornecedorRepository.ObterTodos()));
 
             return produto;
         }
+
         private async Task<bool> UploadImagem(IFormFile imagemUpload, string imgPrefixo)
         {
             if (imagemUpload.Length <= 0) return false;
@@ -175,6 +177,7 @@ namespace DevIO.App.Controllers
             }
             return true;
         }
+
         private async Task<string> ImagemPrefixo(IFormFile imagemUpload, ProdutoViewModel produtoViewModel)
         {
             var imgPrefixo = Guid.NewGuid() + "_";
