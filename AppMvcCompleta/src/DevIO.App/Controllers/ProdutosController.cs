@@ -37,7 +37,7 @@ namespace DevIO.App.Controllers
         // GET: Produtos/Details/5
         public async Task<IActionResult> Details(Guid id)
         {
-            var produtoViewModel = await _produtosrepository.ObterProdutoFornecedor(id);
+            var produtoViewModel = await ObterProduto(id);
 
             if (produtoViewModel == null) return NotFound();
 
