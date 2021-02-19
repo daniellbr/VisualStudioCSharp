@@ -17,15 +17,15 @@ namespace DevIO.Data.Repository
         {
             return await meuDbContext.Fornecedores.AsNoTracking()
                 .Include(e => e.Endereco)
-                .FirstOrDefaultAsync(f => f.Id == id);
+                .FirstOrDefaultAsync(e => e.Id == id);
         }
 
         public async Task<Fornecedor> ObterFornecedorProdutosEndereco(Guid id)
         {
             return await meuDbContext.Fornecedores.AsNoTracking()
                 .Include(e => e.Endereco)
-                .Include(p => p.Produtos)
-                .FirstOrDefaultAsync(f => f.Id == id);
+                .Include(e => e.Produtos)
+                .FirstOrDefaultAsync(e => e.Id == id);
         }
     }
 }

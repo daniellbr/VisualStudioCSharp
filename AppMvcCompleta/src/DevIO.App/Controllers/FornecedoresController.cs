@@ -111,7 +111,7 @@ namespace DevIO.App.Controllers
         private async Task<FornecedorViewModel> ObterFornecedorEndereco(Guid id)
         {
             return (_mapper.Map<FornecedorViewModel>(await _fornecedorRepository.ObterFornecedorEndereco(id)));
-        }
+        }        
 
         private async Task<FornecedorViewModel> ObterFornecedorProdutoEndereco(Guid id)
         {

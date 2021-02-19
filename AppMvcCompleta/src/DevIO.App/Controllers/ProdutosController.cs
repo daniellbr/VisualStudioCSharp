@@ -62,7 +62,7 @@ namespace DevIO.App.Controllers
             if (!ModelState.IsValid) return View(produtoViewModel);
 
             produtoViewModel.Imagem =
-                    await ImagemPrefixo(produtoViewModel.ImagemUpload, produtoViewModel) +
+                    await ImagemPrefixo(produtoViewModel) +
                     produtoViewModel.ImagemUpload.FileName;
 
             await _produtosrepository.Adicionar(_mapper.Map<Produto>(produtoViewModel));
@@ -97,7 +97,7 @@ namespace DevIO.App.Controllers
             if (produtoViewModel.ImagemUpload != null)
             {
                 produtoAtualizando.Imagem =
-                    await ImagemPrefixo(produtoViewModel.ImagemUpload, produtoViewModel) +
+                    await ImagemPrefixo(produtoViewModel) +
                     produtoViewModel.ImagemUpload.FileName;
             }
 
@@ -178,7 +178,7 @@ namespace DevIO.App.Controllers
             return true;
         }
 
-        private async Task<string> ImagemPrefixo(IFormFile imagemUpload, ProdutoViewModel produtoViewModel)
+        private async Task<string> ImagemPrefixo(ProdutoViewModel produtoViewModel)
         {
             var imgPrefixo = Guid.NewGuid() + "_";
 
