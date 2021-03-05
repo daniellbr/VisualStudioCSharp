@@ -4,7 +4,7 @@
     "anonymousAuthentication": true,
     "iisExpress": {
       "applicationUrl": "http://localhost:57066",
-      "sslPort": 44300
+      "sslPort": 0
     }
   },
   "profiles": {
@@ -13,12 +13,27 @@
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      },
+      "profiles": {
+        "IIS Express - Prod": {
+          "commandName": "IISExpress",
+          "launchBrowser": true,
+          "environmentVariables": {
+            "ASPNETCORE_ENVIRONMENT": "Staging"
+          }
     },
-    "DevIO.App": {
+      "profiles": {
+        "IIS Express - Prod": {
+          "commandName": "IISExpress",
+          "launchBrowser": true,
+          "environmentVariables": {
+            "ASPNETCORE_ENVIRONMENT": "Production"
+          }
+    },
+    "DevIO.UI.Modelo": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:5001;http://localhost:5000",
+      "applicationUrl": "http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
