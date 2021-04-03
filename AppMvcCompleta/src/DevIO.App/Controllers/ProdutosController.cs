@@ -14,15 +14,19 @@ namespace DevIO.App.Controllers
 {
     public class ProdutosController : BaseController
     {
-        private readonly IProdutoRepository _produtosrepository;
+        private readonly IProdutoRepository _produtosRepository;
+        private readonly IProdutoService _produtosService;
         private readonly IFornecedorRepository _fornecedorRepository;
         private readonly IMapper _mapper;
 
         public ProdutosController(IProdutoRepository produtoRepository,
+                                  IProdutoService produtoService,  
                                   IFornecedorRepository fornecedorRepository,
-                                  IMapper mapper)
+                                  IMapper mapper,
+                                  INotificador notificador) : base (notificador)
         {
-            _produtosrepository = produtoRepository;
+            _produtosRepository = produtoRepository;
+            _produtosService = produtoService;
             _fornecedorRepository = fornecedorRepository;
             _mapper = mapper;
         }
@@ -32,7 +36,7 @@ namespace DevIO.App.Controllers
         public async Task<IActionResult> Index()
         {
             return View(_mapper.Map<IEnumerable<ProdutoViewModel>>
-                       (await _produtosrepository.ObterProdutosFornecedores()));
+                       (await _produtosRepository.ObterProdutosFornecedores()));
         }
 
         // GET: Produtos/Details/5
@@ -69,7 +73,9 @@ namespace DevIO.App.Controllers
                     await ImagemPrefixo(produtoViewModel) +
                     produtoViewModel.ImagemUpload.FileName;
 
-            await _produtosrepository.Adicionar(_mapper.Map<Produto>(produtoViewModel));
+            await _produtosService.Adicionar(_mapper.Map<Produto>(produtoViewModel));
+
+            if (!OperacaoValida()) return View(produtoViewModel);
 
             return RedirectToAction("Index"); ;
         }
@@ -114,7 +120,9 @@ namespace DevIO.App.Controllers
 
             var produto = _mapper.Map<Produto>(produtoAtualizando);
 
-            await _produtosrepository.Atualizar(produto);
+            await _produtosService.Atualizar(produto);
+
+            if (!OperacaoValida()) return View(produtoViewModel);
 
             return RedirectToAction("Index");
         }
@@ -140,21 +148,23 @@ namespace DevIO.App.Controllers
 
             if (produto == null) return NotFound();
 
-            await _produtosrepository.Remover(id);
+            await _produtosService.Remover(id);
+
+            if (!OperacaoValida()) return View(produto);
 
             return RedirectToAction("Index");
         }
 
         private async Task<ProdutoViewModel> ObterProduto(Guid id)
         {
-            var produto = (_mapper.Map<ProdutoViewModel>(await _produtosrepository.ObterProdutoFornecedor(id)));            
+            var produto = (_mapper.Map<ProdutoViewModel>(await _produtosRepository.ObterProdutoFornecedor(id)));            
 
             return produto;
         }
 
         private async Task<ProdutoViewModel> ObterProdutoFornecedor(Guid id)
         {
-            var produto = (_mapper.Map<ProdutoViewModel>(await _produtosrepository.ObterProdutoFornecedor(id)));
+            var produto = (_mapper.Map<ProdutoViewModel>(await _produtosRepository.ObterProdutoFornecedor(id)));
             produto.Fornecedores = (_mapper.Map<IEnumerable<FornecedorViewModel>>(await _fornecedorRepository.ObterTodos()));
 
             return produto;
