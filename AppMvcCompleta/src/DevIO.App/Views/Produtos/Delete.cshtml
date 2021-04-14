@@ -52,10 +52,10 @@
                 @Html.DisplayFor(model => model.Ativo)
             </dd>
         </dl>
-        <div asp-action="Delete">
-            <input type="hidden" asp-for="Id" />
+        <form asp-action="Delete">
             <input type="submit" value="Excluir" class="btn btn-danger" />            
+            <input type="hidden" asp-for="Id" />
             <a class="btn btn-info" href="javascript:window.history.back();">Voltar</a>
-        </div>        
+        </form>        
     </div>
 </div>

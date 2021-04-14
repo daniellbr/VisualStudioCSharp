@@ -89,7 +89,7 @@ function BuscaCep() {
                 } else {
                     //cep invalido
                     limpa_formulario_cep();
-                    alert("Formtado do CEP inválido.");
+                    alert("Formato do CEP inválido.");
                 }
             } else {
                 //cep sem valor, limpa formulário

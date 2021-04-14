@@ -21,21 +21,24 @@
           "environmentVariables": {
             "ASPNETCORE_ENVIRONMENT": "Staging"
           }
-    },
-      "profiles": {
-        "IIS Express - Prod": {
-          "commandName": "IISExpress",
-          "launchBrowser": true,
-          "environmentVariables": {
-            "ASPNETCORE_ENVIRONMENT": "Production"
+        },
+        "profiles": {
+          "IIS Express - Prod": {
+            "commandName": "IISExpress",
+            "launchBrowser": true,
+            "environmentVariables": {
+              "ASPNETCORE_ENVIRONMENT": "Production"
+            }
+          },
+          "DevIO.UI.Modelo": {
+            "commandName": "Project",
+            "launchBrowser": true,
+            "applicationUrl": "http://localhost:5000",
+            "environmentVariables": {
+              "ASPNETCORE_ENVIRONMENT": "Development"
+            }
           }
-    },
-    "DevIO.UI.Modelo": {
-      "commandName": "Project",
-      "launchBrowser": true,
-      "applicationUrl": "http://localhost:5000",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        }
       }
     }
   }

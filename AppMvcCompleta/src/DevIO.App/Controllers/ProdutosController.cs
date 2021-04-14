@@ -152,6 +152,8 @@ namespace DevIO.App.Controllers
 
             if (!OperacaoValida()) return View(produto);
 
+            TempData["Sucesso"] = ("Registro deletado com sucesso");
+
             return RedirectToAction("Index");
         }
 

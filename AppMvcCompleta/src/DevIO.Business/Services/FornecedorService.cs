@@ -7,32 +7,34 @@ using System.Threading.Tasks;
 
 namespace DevIO.Business.Services
 {
-    public class FornecedoService : BaseService, IFornecedorService
+    public class FornecedorService : BaseService, IFornecedorService
     {
         private readonly IFornecedorRepository _fornecedorRepository;
-        private readonly IEnderecoRepository _enderecoRepository;       
+        private readonly IEnderecoRepository _enderecoRepository;
 
-        public FornecedoService(IFornecedorRepository fornecedorRepository,
-                                IEnderecoRepository enderecoRepository,
-                                INotificador notificador) : base(notificador)
+        public FornecedorService(IFornecedorRepository fornecedorRepository,
+                                 IEnderecoRepository enderecoRepository,
+                                 INotificador notificador) : base(notificador)
         {
             _fornecedorRepository = fornecedorRepository;
-            _enderecoRepository = enderecoRepository;            
+            _enderecoRepository = enderecoRepository;
         }
 
         public async Task Adicionar(Fornecedor fornecedor)
         {
             //validar o estado da entidade
             if (!ExecutarValidacao(new FornecedorValidation(), fornecedor)
-                && !ExecutarValidacao(new EnderecoValidation(), fornecedor.Endereco)) return;
+                || !ExecutarValidacao(new EnderecoValidation(), fornecedor.Endereco)) return;
 
             //Se não existe fornecedor com o mesmo documento
-            if (_fornecedorRepository.Buscar(fornec => fornec.Documento == fornecedor.Documento).Result.Any()) 
+            if (_fornecedorRepository.Buscar(fornec => fornec.Documento == fornecedor.Documento).Result.Any())
             {
                 Notificar("Já existe um fornecedor com este documento informado.");
             }
-
-            await _fornecedorRepository.Adicionar(fornecedor);
+            else
+            {
+                await _fornecedorRepository.Adicionar(fornecedor);
+            }
         }
 
         public async Task Atualizar(Fornecedor fornecedor)
@@ -54,7 +56,7 @@ namespace DevIO.Business.Services
 
             await _enderecoRepository.Atualizar(endereco);
         }
-         
+
 
         public async Task Remover(Guid id)
         {
