@@ -19,6 +19,10 @@ namespace ConsoleApp1
             var pagamento = new Pagamento();
             pagamento.Vencimento = DateTime.Now;
             pagamento.Pagar();
+
+
+            var pagamentoPoli = new pagamento();
+            pa
         }
     }
 
@@ -28,9 +32,14 @@ namespace ConsoleApp1
         public DateTime Vencimento;
 
         //Métodos ou funções do objeto
-        public void Pagar()
+        public virtual void Pagar()
         {
 
+        }
+
+        public override string ToString()
+        {
+            return "Vencimento.ToString("dd,mm,aaaa");
         }
        
     }
@@ -38,11 +47,21 @@ namespace ConsoleApp1
     class PagamentoBoleto : Pagamento
     {
         public string DadosBoleto;
+
+        public override void Pagar()
+        {
+            //Regra para o pagamento do boleto
+        }
     }
 
     class PagamentoCartao : Pagamento
     {
         public string DadosCartao;
+
+        public override void Pagar()
+        {
+            //Regra para o pgamento do Cartão
+        }
     }
 
 
