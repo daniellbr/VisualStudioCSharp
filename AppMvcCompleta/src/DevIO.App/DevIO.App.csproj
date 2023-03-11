@@ -13,6 +13,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Extensions\EmailTagHelper - Copy.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Extensions\CustomAuthorize.cd" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="wwwroot\lib\font-awesome\css\all.min.css" />
     <Content Include="wwwroot\lib\font-awesome\webfonts\fa-brands-400.eot" />
     <Content Include="wwwroot\lib\font-awesome\webfonts\fa-brands-400.svg" />
