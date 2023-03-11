@@ -6,63 +6,41 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            var pagamentoBoleto = new PagamentoBoleto();
-            pagamentoBoleto.Vencimento = DateTime.Now;
-            pagamentoBoleto.DadosBoleto = "Pago";
-            pagamentoBoleto.Pagar();
-
-            var pagamentoCartao = new PagamentoCartao();
-            pagamentoCartao.DadosCartao = "Cartao Black";
-            pagamentoCartao.Vencimento = DateTime.Now;
-            pagamentoCartao.Pagar();
-
-            var pagamento = new Pagamento();
-            pagamento.Vencimento = DateTime.Now;
-            pagamento.Pagar();
-
-
-            var pagamentoPoli = new pagamento();
-            pa
+            var pagamento = new PagamentoCartao(DateTime.Now);
+            pagamento.Pagar("1255");
         }
     }
 
-    class Pagamento
-    {
-        //Propriedades
-        public DateTime Vencimento;
+    
+    /*
+       Nesta aplicação foi abordado sobrescrita, 
+       sobrecarga e metodo construtores
+    */
+    public class Pagamento
+    {  
+        public DateTime DataPagamento{get;set;}
 
-        //Métodos ou funções do objeto
-        public virtual void Pagar()
+        //public Pagamento() {} //Contrutor parameterless construtor sem parametro
+        public Pagamento(DateTime vecimento)
         {
-
+           Console.WriteLine("Iniciando o pagamento"); 
+           DataPagamento = DateTime.Now;
         }
 
-        public override string ToString()
+        public virtual void Pagar(string numero)
         {
-            return "Vencimento.ToString("dd,mm,aaaa");
+           Console.WriteLine("Pagar");
         }
        
     }
 
-    class PagamentoBoleto : Pagamento
-    {
-        public string DadosBoleto;
-
-        public override void Pagar()
+    public class PagamentoCartao : Pagamento
+    {     
+        public PagamentoCartao(DateTime vencimento) : base(vencimento) {}
+        public override void Pagar(string numero)
         {
-            //Regra para o pagamento do boleto
+            base.Pagar(numero);
+            Console.WriteLine("Pagar Cartão");
         }
     }
-
-    class PagamentoCartao : Pagamento
-    {
-        public string DadosCartao;
-
-        public override void Pagar()
-        {
-            //Regra para o pgamento do Cartão
-        }
-    }
-
-
 }
