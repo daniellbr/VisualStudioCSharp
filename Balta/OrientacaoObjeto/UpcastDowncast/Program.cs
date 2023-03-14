@@ -19,10 +19,10 @@ namespace UpcastDowncast
             pessoaFisica.CPF = "12345";
 
 
-            // Console.WriteLine(pessoa.CPF);
+            Console.WriteLine(pessoa.CPF);
 
-            // pessoa.CNPJ = "987654";
-            // Console.WriteLine(pessoa.CNPJ);
+            pessoa.CNPJ = "987654";
+            Console.WriteLine(pessoa.CNPJ);
 
             pessoa.Nome = "Juca";
             Console.WriteLine(pessoa.Nome);
