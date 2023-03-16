@@ -50,7 +50,7 @@ namespace UpcastDowncast
 
         public class PessoaJuridica : Pessoa
         {
-            public string CNPJ { get; private set; }
+            public string CNPJ { get; set; }
         }
 
     }
