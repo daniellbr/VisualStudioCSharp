@@ -1,4 +1,5 @@
 ﻿using System;
+using MaoNaMassa.ContentContext;
 
 namespace MaoNaMassa
 {
@@ -7,6 +8,8 @@ namespace MaoNaMassa
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
+
+            var course = new Course();
         }
     }
 }
