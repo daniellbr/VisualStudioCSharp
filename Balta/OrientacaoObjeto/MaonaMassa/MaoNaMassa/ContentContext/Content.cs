@@ -6,10 +6,11 @@ namespace MaoNaMassa.ContentContext
     //E sim ela somente pode ser herdada, logo vamos torna-la abstrata
     public abstract class Content
     {
-        public Content()
+        public Content(string title, string url)
         {
-            Id = Guid.NewGuid(); //Cria um GUID novo um valor de 36 caracteres                 
-                                 //Id = new Guid(); Cria um id do tipo Guid porém zerado
+            Id = Guid.NewGuid(); //Cria um GUID novo um valor de 36 caracteres Id = new Guid(); Cria um id do tipo Guid porém zerado
+            Title = title;
+            Url = url;
         }
 
         public Guid Id { get; set; }
