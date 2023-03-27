@@ -13,6 +13,10 @@ namespace MaoNaMassa
             var course = new Course();
             course.Level = EContentLevel.Advance;
             course.Level = ContentContext.Enums.EContentLevel.Intermediary;
+
+            var carrer = new Carrer();
+            carrer.Items.Add(new CarrerItem());
+            Console.WriteLine(carrer.TotalCourses);
         }
     }
 }
