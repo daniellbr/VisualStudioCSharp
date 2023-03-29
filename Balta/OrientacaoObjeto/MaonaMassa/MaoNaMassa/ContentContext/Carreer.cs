@@ -2,14 +2,14 @@ using System.Collections.Generic;
 
 namespace MaoNaMassa.ContentContext
 {
-    public class Carrer : Content
+    public class Career : Content
     {
-        public Carrer(string title, string url) : base(title, url)
+        public Career(string title, string url) : base(title, url)
         {
-            Items = new List<CarrerItem>();
+            Items = new List<CareerItem>();
         }
 
-        public IList<CarrerItem> Items { get; set; }
+        public IList<CareerItem> Items { get; set; }
         public int TotalCourses => Items.Count;
         //Expression body é a mesma coisa que { get { return Items.Count}  } 
         //Como só tem uma linha não é necessário abrir chaves nem o Get
