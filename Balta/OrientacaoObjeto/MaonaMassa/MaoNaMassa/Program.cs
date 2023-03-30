@@ -15,7 +15,7 @@ namespace MaoNaMassa
             course.Level = ContentContext.Enums.EContentLevel.Intermediary;
 
             var carrer = new Career("Curso Balta", ".Net");
-            carrer.Items.Add(new CareerItem(1, "Teste", "", null));
+            // carrer.Items.Add(new CareerItem(1, "Teste", "", null));
             // Console.WriteLine(carrer.TotalCourses);
 
             var articles = new List<Article>();
@@ -42,9 +42,9 @@ namespace MaoNaMassa
             var careerDotNet = new Career("Especialista .net", ".net");
             var careerCSharp = new Career("Especialista CSharp", "CSharp");
             var careerAspnet = new Career("Especialista AspNet", "AspNet");
-            var careerItem3 = new CareerItem(3, "Finalize por aqui", "", null);
-            var careerItem1 = new CareerItem(1, "Comece por aqui", "", null);
-            var careerItem2 = new CareerItem(2, "Proximo curso", "", null);
+            var careerItem3 = new CareerItem(3, "Finalize por aqui", "", courseOOP);
+            var careerItem1 = new CareerItem(1, "Comece por aqui", "", courseAspNet);
+            var careerItem2 = new CareerItem(2, "Proximo curso", "", courseCsharp);
             careers.Add(careerDotNet);
             careerDotNet.Items.Add(careerItem3);
             careerDotNet.Items.Add(careerItem1);
@@ -56,6 +56,7 @@ namespace MaoNaMassa
                 foreach (var item in career.Items.OrderBy(x => x.Order))
                 {
                     Console.WriteLine($"{item.Order} - {item.Title}");
+                    Console.WriteLine($"{item.Course.Level} - {item.Course.Title}");
                 }
             }
         }

@@ -4,6 +4,9 @@ namespace MaoNaMassa.ContentContext
     {
         public CareerItem(int order, string title, string description, Course course)
         {
+            if (course == null)
+                throw new System.Exception("O Course não pode ser nulo");
+
             Order = order;
             Title = title;
             Description = description;
