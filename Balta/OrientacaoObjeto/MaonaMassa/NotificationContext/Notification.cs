@@ -1,11 +1,8 @@
-namespace MaoNaMassa.Notification
+namespace MaoNaMassa.NotficationContext
 {
     public sealed class Notification
     {
-        public Notification()
-        {
-
-        }
+        public Notification() { }
 
         public Notification(string property, string message)
         {

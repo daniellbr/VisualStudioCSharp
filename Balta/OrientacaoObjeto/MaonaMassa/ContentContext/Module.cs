@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace MaoNaMassa.ContentContext
 {
-    public class Module
+    public class Module : Base
     {
         public Module()
         {

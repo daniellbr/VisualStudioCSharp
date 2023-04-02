@@ -38,6 +38,8 @@ namespace MaoNaMassa
             courses.Add(courseCsharp);
             courses.Add(courseAspNet);
 
+            //courseOOP.Add();
+
             var careers = new List<Career>();
             var careerDotNet = new Career("Especialista .net", ".net");
             var careerCSharp = new Career("Especialista CSharp", "CSharp");
