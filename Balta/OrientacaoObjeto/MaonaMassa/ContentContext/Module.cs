@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using MaoNaMassa.SharedContext;
 
 namespace MaoNaMassa.ContentContext
 {

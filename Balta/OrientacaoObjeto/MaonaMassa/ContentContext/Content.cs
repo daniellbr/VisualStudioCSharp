@@ -1,4 +1,5 @@
 using System;
+using MaoNaMassa.SharedContext;
 
 namespace MaoNaMassa.ContentContext
 {

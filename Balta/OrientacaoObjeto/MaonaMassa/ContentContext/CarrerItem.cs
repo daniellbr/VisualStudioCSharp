@@ -1,4 +1,5 @@
 using MaoNaMassa.NotficationContext;
+using MaoNaMassa.SharedContext;
 
 namespace MaoNaMassa.ContentContext
 {
