@@ -32,19 +32,21 @@ namespace MaoNaMassa
 
             var courses = new List<Course>();
             var courseOOP = new Course("Curso de OOP", "fundamento-OOP");
-            var courseCsharp = new Course("Curso de Csharp", "fundamento-CSharp");
+            //  var courseCsharp = new Course("Curso de Csharp", "fundamento-CSharp");
+            var courseCsharp = new Course("Curso de Csharp", null);
             var courseAspNet = new Course("Curso de AspNet", "fundamento-AspNet");
             courses.Add(courseOOP);
             courses.Add(courseCsharp);
             courses.Add(courseAspNet);
 
-            //courseOOP.Add();
+
 
             var careers = new List<Career>();
             var careerDotNet = new Career("Especialista .net", ".net");
             var careerCSharp = new Career("Especialista CSharp", "CSharp");
             var careerAspnet = new Career("Especialista AspNet", "AspNet");
-            var careerItem3 = new CareerItem(3, "Finalize por aqui", "", courseOOP);
+            //var careerItem3 = new CareerItem(3, "Finalize por aqui", "", courseOOP);
+            var careerItem3 = new CareerItem(3, "Finalize por aqui", "", null);
             var careerItem1 = new CareerItem(1, "Comece por aqui", "", courseAspNet);
             var careerItem2 = new CareerItem(2, "Proximo curso", "", courseCsharp);
             careers.Add(careerDotNet);
@@ -58,9 +60,14 @@ namespace MaoNaMassa
                 foreach (var item in career.Items.OrderBy(x => x.Order))
                 {
                     Console.WriteLine($"{item.Order} - {item.Title}");
-                    Console.WriteLine($"{item.Course.Level} - {item.Course.Title}");
+                    Console.WriteLine($"{item.Course?.Level} - {item.Course?.Title}");
+                    foreach (var notification in item.Notifications)
+                    {
+                        Console.WriteLine($"{notification.Property} - {notification.Message}");
+                    }
                 }
             }
+
         }
     }
 }
