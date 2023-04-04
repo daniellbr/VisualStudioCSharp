@@ -1,6 +1,6 @@
 using MaoNaMassa.SharedContext;
 
-namespace MaoNaMassa.Subscription
+namespace MaoNaMassa.SubscriptionContext
 {
     public class User : Base
     {
