@@ -7,7 +7,6 @@ namespace MaoNaMassa.SubscriptionContext
     {
         public Plan Plan { get; private set; }
         public DateTime? EndDate { get; set; }
-        public bool IsActive => EndDate <= DateTime.Now;
-
+        public bool IsInactive => EndDate <= DateTime.Now;
     }
 }
