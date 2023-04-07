@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using MaoNaMassa.NotficationContext;
 
 namespace MaoNaMassa.SubscriptionContext
 {
-    public class Student
+    public class Student : Subscription
     {
         public Student(string name, string email, User user)
         {
@@ -20,5 +21,16 @@ namespace MaoNaMassa.SubscriptionContext
         public User User { get; set; }
         public IList<Subscription> Subscriptions { get; set; }
         public bool IsPremium => Subscriptions.Any(x => !x.IsInactive);
+
+        public void CreateSubscription(Subscription subscription)
+        {
+            if (IsPremium)
+            {
+                AddNotification(new Notification("Premium", "O aluno já é premium e tem uma assinatura ativa."));
+                return;
+            }
+
+            Subscriptions.Add(subscription);
+        }
     }
 }

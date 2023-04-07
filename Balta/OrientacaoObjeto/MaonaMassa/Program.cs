@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using MaoNaMassa.ContentContext;
 using MaoNaMassa.ContentContext.Enums;
+using MaoNaMassa.SubscriptionContext;
 
 namespace MaoNaMassa
 {
@@ -67,6 +68,12 @@ namespace MaoNaMassa
                     }
                 }
             }
+
+            var payPalSubscription = new PayPalSubscriptions();
+            var student = new Student("Juca", "juca@juca.com", null);
+            student.Subscriptions.Add(payPalSubscription);
+
+
 
         }
     }
