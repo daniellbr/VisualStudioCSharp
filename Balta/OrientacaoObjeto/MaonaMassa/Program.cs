@@ -72,9 +72,6 @@ namespace MaoNaMassa
             var payPalSubscription = new PayPalSubscriptions();
             var student = new Student("Juca", "juca@juca.com", null);
             student.Subscriptions.Add(payPalSubscription);
-
-
-
         }
     }
 }
