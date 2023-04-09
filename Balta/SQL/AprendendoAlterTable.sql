@@ -8,3 +8,7 @@ ALTER TABLE [Aluno]
 
 ALTER TABLE [Aluno]
     ADD [Document] CHAR(11)
+
+
+DROP TABLE Aluno
+
