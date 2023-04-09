@@ -46,5 +46,30 @@ CREATE TABLE [Aluno](
     CONSTRAINT [UQ_ALUNO_EMAIL] UNIQUE([Email])
 )
 
-ALTER TABLE [Aluno]
-    DROP CONSTRAINT[UQ_Aluno_A9D10534083EA5B8]
+
+CREATE TABLE [Curso](
+    [Id] INT NOT NULL,
+    [Nome] NVARCHAR(80) NOT NULL,
+    [CategoriaId] INT NOT NULL
+
+    CONSTRAINT [PK_CURSO_ID] PRIMARY KEY([Id]),    
+    CONSTRAINT [FK_CURSO_CATEGORIA] FOREIGN KEY([CategoriaId])    
+        REFERENCES [Categoria]([Id])
+)
+
+CREATE TABLE [ProgressoCurso](
+    [AlunoId] INT NOT NULL,
+    [CursoId] INT NOT NULL,
+    [Progresso] INT NOT NULL,
+    [UltimaAtualizacao] DATETIME DEFAULT(GETDATE())
+
+    CONSTRAINT PK_PROGRESSO_CURSO PRIMARY KEY([AlunoId], [CursoId])
+
+)
+
+CREATE TABLE [Categoria](
+    [Id] INT NOT NULL,
+    [Nome] NVARCHAR(80) NOT NULL,
+
+    CONSTRAINT [PK_CATEGORIA_ID] PRIMARY KEY([Id])    
+)
