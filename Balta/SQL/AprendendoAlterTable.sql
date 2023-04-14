@@ -46,9 +46,9 @@ CREATE TABLE [Aluno](
     CONSTRAINT [UQ_ALUNO_EMAIL] UNIQUE([Email])
 )
 
-
+DROP TABLE [Curso]
 CREATE TABLE [Curso](
-    [Id] INT NOT NULL,
+    [Id] INT NOT NULL IDENTITY(1,1), --Começa com 1 e incrementa um a cada inserção evitando dar o MAX toda vez na tabela para saber qual é o ultimo
     [Nome] NVARCHAR(80) NOT NULL,
     [CategoriaId] INT NOT NULL
 
@@ -77,3 +77,14 @@ CREATE TABLE [Categoria](
 
 CREATE INDEX[IX_ALUNO_EMAIL] ON [Aluno]([Email])
 DROP INDEX[IX_ALUNO_EMAIL] ON [Aluno]([Email])
+
+
+USE [master];
+
+DECLARE @kill VARCHAR(8000) = '';
+SELECT @kill = @kill + 'kill' + CONVERT(varchar(5), session_id) + ';'
+FROM sys.dm_exec_sessions
+WHERE database_id = DB_ID('Curso')
+
+EXEC(@kill)
+DROP DATABASE[Curso]
