@@ -46,3 +46,6 @@ INSERT INTO [Curso]([Nome],[CategoriaId]) VALUES('Fundamentos Android',3)
 --Select
 SELECT TOP 10 * FROM Curso
 SELECT TOP 10 * FROM Categoria
+
+SELECT TOP 10 * FROM Curso --where CategoriaId = 1
+ORDER BY Nome DESC
