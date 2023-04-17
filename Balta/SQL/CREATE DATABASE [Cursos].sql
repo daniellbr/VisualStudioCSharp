@@ -22,17 +22,27 @@ CREATE TABLE [Categoria](
 
 
 --Deletando um database
-USE [master];
+-- USE [master];
 
-DECLARE @kill VARCHAR(8000) = '';
-SELECT @kill = @kill + 'kill ' + CONVERT(varchar(5), session_id) + ';'
-FROM sys.dm_exec_sessions
-WHERE database_id = DB_ID('Curso')
+-- DECLARE @kill VARCHAR(8000) = '';
+-- SELECT @kill = @kill + 'kill ' + CONVERT(varchar(5), session_id) + ';'
+-- FROM sys.dm_exec_sessions
+-- WHERE database_id = DB_ID('Curso')
 
-EXEC(@kill);
-DROP DATABASE[Curso]
+-- EXEC(@kill);
+-- DROP DATABASE[Curso]
 
---Inserindo
+--Inserindo na tabela Categoria
 INSERT INTO [Categoria]([Nome])VALUES('Backend')
 INSERT INTO [Categoria]([Nome])VALUES('Frontend')
 INSERT INTO [Categoria]([Nome])VALUES('Mobile')
+
+
+--Inserindo na tabela Categoria
+INSERT INTO [Curso]([Nome],[CategoriaId]) VALUES('Fundamentos C#',1)
+INSERT INTO [Curso]([Nome],[CategoriaId]) VALUES('Fundamentos Angular',2)
+INSERT INTO [Curso]([Nome],[CategoriaId]) VALUES('Fundamentos Android',3)
+
+--Select
+SELECT TOP 10 * FROM Curso
+SELECT TOP 10 * FROM Categoria
